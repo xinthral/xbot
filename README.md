@@ -1,0 +1,2 @@
+# xbot
+Python Twitch Bot
