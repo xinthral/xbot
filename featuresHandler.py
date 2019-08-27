@@ -113,6 +113,16 @@ class CommandHandler(object):
         #elif cmd == "stalk":
         #elif cmd == "trivia":
         #elif cmd == "yeet":
+        elif cmd == "pyramid":
+            #FIXME: Has no error checking or failsafes
+            meme = "PogChamp"
+            if len(self.command) >= 2:
+                meme = self.command[1]
+            msg = memePyramid(meme)
+            for message in msg:
+                self.obj.connection.privmsg(self.obj.channel, message)
+                sleep(2)
+
         elif cmd == "haiku":
             msg = haikuMe()
             for message in msg:

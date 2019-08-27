@@ -176,7 +176,13 @@ def jokes(jokeType = 'dad', index = -1):
     return(response)
 
 def memePyramid(meme = 'PogChamp'):
-    pass
+    #FIXME: Function needs work, doesn't work as intended.
+    response = []
+    size = len(meme)
+    for i in range(1, 4):
+        response.append((" " + meme + " ") * i)
+    print(response)
+    return(response)
 
 def playSound(meme):
     import subprocess
