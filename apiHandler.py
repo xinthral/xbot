@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import json
 import requests
 from utils import cnf
@@ -88,3 +87,14 @@ def api_follows(args=None):
     if DEBUG:
         pp(response)
     return(response)
+
+def api_channel(args=None):
+    """ Polls Channels Method from stream """
+    if args != None:
+        url = "https://api.twitch.tv/kraken/channels/{}/videos".format(args)
+        response = requests.get(url).json()
+        if DEBUG:
+            pp(response)
+        return(response)
+    else:
+        pass

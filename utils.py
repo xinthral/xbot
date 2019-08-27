@@ -1,10 +1,9 @@
-#!/usr/bin/env python
 def cnf(section, setting):
     import os
     from configparser import ConfigParser
 
     ConfigFile = os.getcwd() + "\\settings.config"
-   
+
     config = ConfigParser()
     config.read(ConfigFile)
     value = config.get(section, setting)
@@ -14,19 +13,18 @@ def cnf(section, setting):
         return(False)
     else:
         return(value)
-    
-    
+
 def Logr(orig_func, logFile = 'master.log'):
-    """ 
-    Logger Function: boilerplate wrapper to log function 
+    """
+    Logger Function: boilerplate wrapper to log function
      - only works on main function
      - logs into loggrs directory as {functionName}.log
-    """    
+    """
     import datetime
     import logging, os
     try:
         logging.basicConfig(
-            filename = 'loggrs\\master.log', 
+            filename = 'loggrs\\master.log',
             level = logging.INFO,
             format = '%(asctime)s %(message)s',
             datefmt = '[%B %d, %Y] %H:%M:%S'
@@ -37,7 +35,7 @@ def Logr(orig_func, logFile = 'master.log'):
             print("{} Creating missing directory: {}".format(timeStamp(), newPath))
             os.makedirs(newPath)
         if not os.path.exists("{}{}".format(newPath, logFile)):
-            print("Creating missing file: 'logr\\{}'".format(logFile))        
+            print("Creating missing file: 'logr\\{}'".format(logFile))
             open(os.path.join(newPath, logFile), 'w').close()
     finally:
         def wrapper(*args, **kwargs):
@@ -47,10 +45,10 @@ def Logr(orig_func, logFile = 'master.log'):
                 )
             )
             return(orig_func(*args, **kwargs))
-        return(wrapper)    
-    
+        return(wrapper)
+
 def timeStamp():
-    """ 
+    """
     TimeStamp Function: generates formated timestamp
     """
     from time import strftime, localtime
@@ -76,3 +74,9 @@ def timeDelta(dtime):
     minutes = changeTime.total_seconds() / 60
     seconds = changeTime.total_seconds() % 60
     return('{}:{:.2f}'.format(int(minutes), seconds))
+
+def randomRoll(inputList):
+    from time import perf_counter
+    from random import choice, seed
+    seed(perf_counter())
+    return(choice(inputList))
