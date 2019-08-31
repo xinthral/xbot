@@ -10,10 +10,13 @@ class Player(object):
         self.title = title
 
         # Base Stats
-        self._base = {'name': name, 'title': title, 'armor': armor, 'damage': damage, 'health': health, 'mana': mana}
+        self._base = {'name': name, 'title': title,
+                      'armor': armor, 'damage': damage,
+                      'health': health, 'mana': mana}
 
         # Max Stats
-        self._max = {'armor': armor, 'damage': damage, 'health': health, 'mana': mana}
+        self._max = {'armor': armor, 'damage': damage,
+                     'health': health, 'mana': mana}
 
     def decrementHealth(self, damage=1):
         # Death check
@@ -38,7 +41,7 @@ class Player(object):
             print("Original Stats:\nName:\t{}\nHealth:\t{}\nMagic:\t{}\nArmor:\t{}"
                   .format(self.name, self.health, self.mana, self.armor))
         else:
-            print("|| {} - HP:( {} ) MP:( {} ) AR:( {} ) ||"
+            print("|| {} - [ HP: {} ] [ MP: {} ] [ AR: {} ] ||"
                   .format(self.name, self.health, self.mana, self.armor))
 
     def returnStats(self):
@@ -53,9 +56,10 @@ class SuperHero(Player):
         super(SuperHero, self).reveal_identity()
         print("..And I am {}!".format(self.hero_name))
 
-if __name__ == "__main__":
-    def testUser():
-        armor, damage, health, mana = 5, 1, 10, 10
-        return(Player("Dr", "Jesse", armor, damage, health, mana))
+def testUser(name='McTester'):
+    rank, armor, damage, health, mana = 'Tester', 5, 1, 10, 10
+    return(Player(rank, name, armor, damage, health, mana))
 
-    testUser = testUser()
+if __name__ == "__main__":
+    kodo = testUser('Kodo')
+    podo = testUser('Podo')
