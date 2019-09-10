@@ -143,6 +143,7 @@ class CommandHandler(object):
             self.obj.connection.privmsg(self.obj.channel, msg)
 
         # ===== Subscriber Commands ===== #
+        #elif cmd == "name":
         #elif cmd == "fubar":
         #elif cmd == "quote":
         elif cmd == "play": #playnavi

@@ -118,7 +118,8 @@ jokesDict = {
         ["I heard they were adding Turkies to Minecraft...", "If you listen, you can hear them in the distance. 'cobble, cobble, cobble'."],
         ["Do you know why Donkey Kong has such white teeth?", "Cause he brushes every day....to prevent tooth DK."],
         ["A pro basketball team mentioned they were looking to pick up Link as their new forward.", "I guess they finally heard how good he was with a hookshot."],
-        ["Spent hours tunneling in Minecraft, and still no diamonds.", "I feel totally shafted."]
+        ["Spent hours tunneling in Minecraft, and still no diamonds.", "I feel totally shafted."],
+        ["What's the best spec for a druid who doesn't like to shapeshift?", "Restoration, cause once you go tree you never have to leaf it."]
     ]
 }
 
