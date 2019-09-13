@@ -17,7 +17,7 @@ class CommandHandler(object):
         self.obj = obj
         self.offlineMsg = "@{} -> The [{}] command is unavailable because it would appear that {} is offline.".format(self.obj.requestor, self.command[0], self.obj.channel_displayName)
         self.apiStreams = api_streams({'user_login': self.obj.channel_id})
-        self.selector(self.command[0])
+        self.selector(self.command[0].lower())
 
     def selector(self, cmd):
         """ Selects between Command Options """
