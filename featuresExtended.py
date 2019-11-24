@@ -91,6 +91,7 @@ jokesDict = {
 	    ["My spouse started yelling at me for not listening to a word she was saying.", "I don't know what she's mad about, that's a weird way to start a conversation."],
 	    ["I tried calling the Tinnitus hot-line one time.", "It just kept ringing"],
 	    ["Fun fact: Did you know that dogs can't operate MRI equipment?", "However, cats_can"],
+        ["What do sprinters eat before a race?", "Nothing, they fast!"],
     ],
     'taboo': [
         ["What do you get when you mix Goat DNA and Human DNA?", "Kicked out of the petting zoo."],
