@@ -68,7 +68,6 @@ jokesDict = {
         ["To the person who invented the shovel,", "You were ground-breaking!"],
         ["I find all these jokes about german sausage highly offensive;", "They\'re just the wurst."],
         ["A woman walks past the bathroom to see her husband standing on the scale, sucking in his stomach.  \"Ha, that's not going to help,\" she says;", "The man responds, \"Sure it does, it\'s the only way I can see the numbers.\""],
-        ["After having children, I put in a swear jar.  Each time someone said a bad word, they had to put a dollar in;", "At the end of each month I bought myself a nice fucking steak."],
         ["I had a joke about a broken pencil, but I can't seem to remember how it goes....", "It doesn\'t matter anyway, it was pointless."],
         ["What country has the fastest-growing capital?", "Ireland, cause everyday it's Dublin."],
         ["The other day I had a clown open the door for me;", "Such a nice Jester."],
@@ -84,7 +83,14 @@ jokesDict = {
         ["What day of the week do chickens hate the most?", "Fry-day."],
         ["A young man approaches a widow at her husbands funeral and says, 'plethora';", "The woman says, 'Thanks, that means alot.'"],
         ["Did you hear about Santa's stand-up comedy act?", "The reviews say he sleighed."],
-        ["What kind of storm is always in a rush?", "A Hurricane...", "You're smirking and regretting it, so you're welcome."]
+        ["What kind of storm is always in a rush?", "A Hurricane...", "You're smirking and regretting it, so you're welcome."],
+        ["A criminal is wanted for stealing wheels off police cars", "Police are working tirelessly to catch him."],
+	    ["Did you hear about the cashier that scanned the eyes of a rude customer with her barcode reader.", "They said the look on her face was priceless."],
+	    ["Did you hear about the toddler getting charged for being uncooperative?", "They said he refused to take a nap, and was charged for resisting a rest."],
+	    ["What is the least spoken language in the world?", "...Sign Language..."],
+	    ["My spouse started yelling at me for not listening to a word she was saying.", "I don't know what she's mad about, that's a weird way to start a conversation."],
+	    ["I tried calling the Tinnitus hot-line one time.", "It just kept ringing"],
+	    ["Fun fact: Did you know that dogs can't operate MRI equipment?", "However, cats_can"],
     ],
     'taboo': [
         ["What do you get when you mix Goat DNA and Human DNA?", "Kicked out of the petting zoo."],
@@ -99,11 +105,11 @@ jokesDict = {
         ["Some human was complaining in chat about their cheap circumcision;", "They said it was a total rip off."],
         ["Gonorrhea would have been a great name for diarrhea medication."],
         ["Did you hear why 7 8 9?", "To see what 6 had been braggin about.", "I'll let that one sink in for a minute."],
-        ["While playing some Call of Duty with a friend, I asked him who he thought the best CoD player was,","and without missing a beat, he responded 'Hitler'...", "Confused by his response, I made the mistake of inquiring why.", "With a smirk he said, 'Dude, check his K-D.'", "...And that was the last time he we spoke."],
         ["Dating a single parent can be very awkward at first...", "It feels a bit like picking up from some else's saved game."],
         ["Leer, Flash, Harden, Withdraw, Sleep...", "When you read that list, do you think this a list of Pokemon moves, or a description of your sex life?"],
         ["I received an email the other day asking me if I believed in creationism or evolutionism...", "I never use creative mode, it's for people who can't handle the struggle."],
-        ["So, Pokemon Black came out this weekend.", "Gotta Catch Jamal."]
+        ["After having children, I put in a swear jar.  Each time someone said a bad word, they had to put a dollar in;", "At the end of each month I bought myself a nice fucking steak."],
+        ["A Police officer is filling out his paperwork after an arrest, he leans over to his supervisor and says is 'buttcheeks' the correct spelling?", "Without missing a beat, the prison yells from the drunk tank, 'NO! According to you, you need to spread them apart.'"],
     ],
     'gaming': [
         ["I kept dying in Overwatch earlier while playing Tracer, and the replay was corrupted", "I would like to know why, but it seems I will be unable to recall."],
@@ -120,6 +126,10 @@ jokesDict = {
         ["A pro basketball team mentioned they were looking to pick up Link as their new forward.", "I guess they finally heard how good he was with a hookshot."],
         ["Spent hours tunneling in Minecraft, and still no diamonds.", "I feel totally shafted."],
         ["What's the best spec for a druid who doesn't like to shapeshift?", "Restoration, cause once you go tree you never have to leaf it."]
+    ],
+    'offensive': [
+        ["So, Pokemon Black came out this weekend.", "Gotta Catch Jamal."],
+        ["While playing some Call of Duty with a friend, I asked him who he thought the best CoD player was,","and without missing a beat, he responded 'Hitler'...", "Confused by his response, I made the mistake of inquiring why.", "With a smirk he said, 'Dude, check his K-D.'", "...And that was the last time he we spoke."],
     ]
 }
 
