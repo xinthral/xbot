@@ -43,7 +43,7 @@ jokesDict = {
         ["You know where General\'s keep their armies?", "In their sleevies."],
         ["Humans never like my dolphin puns,", "So I make them bad on porpoise."],
         ["I was disappointed the first time I tried to grow a beard,", "but then it grew on me."],
-        ["Do you know how a backwards poet writes?", "Inverse."],
+        ["Do you know how a backwards poet writes?", "In-verse."],
         ["I think of plateau's as compliments,", "afterall, they are the highest form of flattery."],
         ["To the guy who invented zero..", "Thanks for nothing!"],
         ["After watching a documentary on beavers, I realized something...","It was the best dam show I ever saw!"],
@@ -92,6 +92,8 @@ jokesDict = {
 	    ["I tried calling the Tinnitus hot-line one time.", "It just kept ringing"],
 	    ["Fun fact: Did you know that dogs can't operate MRI equipment?", "However, cats_can"],
         ["What do sprinters eat before a race?", "Nothing, they fast!"],
+        ["I watched a child go up and hug his mother, walking away they both wore large smiles;", "Walking around the corner, I hear the child tell his father, \"You're right dad, she is gaining weight.\""],
+        ["Sometimes it is very important if a sentence was said by a man or a woman,", "A good example: \"I used a whole pack of tissues while watching that movie you lent me!\""],
     ],
     'taboo': [
         ["What do you get when you mix Goat DNA and Human DNA?", "Kicked out of the petting zoo."],
@@ -111,6 +113,8 @@ jokesDict = {
         ["I received an email the other day asking me if I believed in creationism or evolutionism...", "I never use creative mode, it's for people who can't handle the struggle."],
         ["After having children, I put in a swear jar.  Each time someone said a bad word, they had to put a dollar in;", "At the end of each month I bought myself a nice fucking steak."],
         ["A Police officer is filling out his paperwork after an arrest, he leans over to his supervisor and says is 'buttcheeks' the correct spelling?", "Without missing a beat, the prison yells from the drunk tank, 'NO! According to you, you need to spread them apart.'"],
+        ["Did you hear about this whack job who coated his testicles in glitter?", "Yeah, from what the reporter was saying I guess it was pretty nuts."],
+        ["I guess I scared the mailman when I answered the door in the nude.", "Never did figure out what freaked him out the most", "Maybe it was being buff in the door way, maybe it was the question of how I got in his house.  Who really knows..."],
     ],
     'gaming': [
         ["I kept dying in Overwatch earlier while playing Tracer, and the replay was corrupted", "I would like to know why, but it seems I will be unable to recall."],
