@@ -118,7 +118,7 @@ jokesDict = {
     ],
     'gaming': [
         ["I kept dying in Overwatch earlier while playing Tracer, and the replay was corrupted", "I would like to know why, but it seems I will be unable to recall."],
-        ["There was a Pokemon streamer who had his girlfriend show up during his stream and called him childish for playing the game", "He started thrashing about and roared \"You don’t have enough badges to control me!\"", "...Well played kiddo, well play."],
+        ["There was a Pokemon streamer who had his girlfriend show up during his stream and called him childish for playing the game", "He started thrashing about and roared \"You don't have enough badges to control me!\"", "...Well played kiddo, well play."],
         ["You know when you walk into a room and forget why you went in there?", "Now you know what it feels like to be a Sim and have your action cancelled mid way."],
         ["Had a viewer one time ask me if I believed in creationism or evolutionism...","Confused I said, \"Evolutionism...cause if I'm going to get that Charizard, then I would rather earn it instead of cheat it in.\""],
         ["I heard they were making a new Minecraft Movie called TNT!!!!!","I bet it's going to be a real block-buster."],
