@@ -50,7 +50,7 @@ class Fight(object):
         """
         The greater the phase value the greater the probability of success
         """
-        probabilityMap = [ i for i in range(0, 12) ]
+        probabilityMap = [ _ for _ in range(0, 12) ]
         epsilon = self.randomRoll(probabilityMap)
         return(epsilon <= self.phase)
 

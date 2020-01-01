@@ -85,7 +85,8 @@ jokesDict = {
         ["What kind of storm is always in a rush?", "A Hurricane...", "You're smirking and regretting it, so you're welcome."],
         ["Did you hear about the criminal who was wanted for stealing wheels off police cars", "Law enforcement officials are working tirelessly to catch him."],
 	    ["Did you hear about the cashier that scanned the eyes of a rude customer with her barcode reader.", "They said the look on her face was priceless."],
-	    ["Did you hear about the toddler getting charged for being uncooperative?", "They said he refused to take a nap, and was charged for resisting a rest."],
+
+        ["Did you hear about the toddler getting charged for being uncooperative?", "They said he refused to take a nap, and was charged for resisting a rest."],
 	    ["What is the least spoken language in the world?", "...Sign Language..."],
 	    ["My spouse started yelling at me for not listening to a word she was saying.", "I don't know what she's mad about, that's a weird way to start a conversation."],
 	    ["I tried calling the Tinnitus hot-line one time.", "It just kept ringing"],
@@ -160,7 +161,7 @@ def jokes(jokeType = 'dad', index = -1):
             if index > -1:
                 jokeIndex = index
             else:
-                jokeIndex = randint(0, len(jokesDict['dad'])-1)
+                jokeIndex = randint(0, len(dadJokeList)-1)
             response = dadJokeList.pop(jokeIndex)
 
         elif jokeType.lower() == "taboo":
@@ -170,7 +171,7 @@ def jokes(jokeType = 'dad', index = -1):
             if index > -1:
                 jokeIndex = index
             else:
-                jokeIndex = randint(0, len(jokesDict['taboo'])-1)
+                jokeIndex = randint(0, len(tabooJokeList)-1)
             response = tabooJokeList.pop(jokeIndex)
 
         elif jokeType.lower() == "gaming":
@@ -180,11 +181,11 @@ def jokes(jokeType = 'dad', index = -1):
             if index > -1:
                 jokeIndex = index
             else:
-                jokeIndex = randint(0, len(jokesDict['gaming'])-1)
+                jokeIndex = randint(0, len(gamingJokeList)-1)
             response = gamingJokeList.pop(jokeIndex)
         else:
             error = "Invalid Joke Type."
-            response = jokesDict['dad'][randint(0, len(jokesDict['dad'])-1)]
+            response = dadJokeList.pop(randint(0, len(dadJokeList)-1))
             response.insert(0, error)
     except:
         print(sys.exc_info())
