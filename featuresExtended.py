@@ -33,6 +33,7 @@ This whole jokes things needs to get unfucked, put the dictionary in a seperate 
 """
 jokesDict = {
     'dad': [
+        ["I was working on a joke about Sodium...but then I thought Na!", "Tada, chemistry!"],
         ["Why can\'t a bicycle stand on its own?", "It\'s two-tired."],
         ["What\'s the best thing about living in Switzerland,", "I don\'t know, but I hear their flag is a big plus."],
         ["What\'s more amazing than a talking dog?", "A spelling bee."],
@@ -85,7 +86,7 @@ jokesDict = {
         ["What kind of storm is always in a rush?", "A Hurricane...", "You're smirking and regretting it, so you're welcome."],
         ["Did you hear about the criminal who was wanted for stealing wheels off police cars", "Law enforcement officials are working tirelessly to catch him."],
 	    ["Did you hear about the cashier that scanned the eyes of a rude customer with her barcode reader.", "They said the look on her face was priceless."],
-
+        ["Did you hear about the Chameleon that couldn't change colors?", "They said he has a reptile disfunction."],
         ["Did you hear about the toddler getting charged for being uncooperative?", "They said he refused to take a nap, and was charged for resisting a rest."],
 	    ["What is the least spoken language in the world?", "...Sign Language..."],
 	    ["My spouse started yelling at me for not listening to a word she was saying.", "I don't know what she's mad about, that's a weird way to start a conversation."],
