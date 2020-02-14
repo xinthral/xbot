@@ -8,7 +8,7 @@ phraseDict = {
         ["You can\'t make positive choices for the rest of your life without an environtment that makes those choices easy, natural, and enjoyable. -- Deepak Chopra"],
         ["Perpetual optimism is a force multiplier. -- Colin Powell"],
         ["Failures are simply steps you must climb to reach to the door of success. -- Xinthral"],
-        ["Optimism is a happiness magnet. If you stay positive, good things and good people will be drawn to you. -- Marry Lou Retton"]
+        ["Optimism is a happiness magnet. If you stay positive, good things and good people will be drawn to you. -- Marry Lou Retton"],
     ],
     'inspirational' : [
         ["You can choose to love, or you can choose to hate. But you only have enough energy for one, so choose wisely. -- Dad"],
@@ -26,9 +26,9 @@ phraseDict = {
         ["Who\'s that cummin up in here with the BDE!?!? -- T3chnopanda"],
         ["Rando: I waited 18 minutes for this to end so quickly? T3chnopanda: I waited my whole life to have sex and it only took 30 seconds."],
         ["You done fk\'d up A-A-ron!"],
+        ["Turn her over and then BAM, up the butt. -- Gordon Ramsey"],
     ],
     'funny': [
         ["You can\'t make something idiot-proof cause God designs the idiots, and he\'s a better bot designer than you. -- Xinthral"],
-        [""],
     ]
 }

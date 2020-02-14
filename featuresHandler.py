@@ -87,6 +87,32 @@ class CommandHandler(object):
                 except:
                     self.obj.connection.privmsg(self.obj.channel, self.offlineMsg)
 
+
+        # ===== Extended Features ===== #
+        #elif cmd == "raffle":
+        #elif cmd == "stalk":
+        #elif cmd == "trivia":
+        #elif cmd == "yeet":
+        elif cmd == "pyramid":
+            #FIXME: Has no error checking or failsafes
+            meme = "PogChamp"
+            if len(self.command) >= 2:
+                meme = self.command[1]
+            msg = memePyramid(meme)
+            for message in msg:
+                self.obj.connection.privmsg(self.obj.channel, message)
+                sleep(2)
+
+        elif cmd == "fact":
+            fact = randomFacts()
+            self.obj.connection.privmsg(self.obj.channel, fact)
+
+        elif cmd == "haiku":
+            msg = haikuMe()
+            for message in msg:
+                self.obj.connection.privmsg(self.obj.channel, message)
+                sleep(2)
+
         elif cmd == "jokes" or cmd == "joke":
             if len(self.command) >= 2:
                 if self.command[1].lower() in self.obj.allowedJokes:
@@ -108,31 +134,6 @@ class CommandHandler(object):
                 self.obj.connection.privmsg(self.obj.channel, element)
                 sleep(4)
 
-        # ===== Extended Features ===== #
-        #elif cmd == "raffle":
-        #elif cmd == "stalk":
-        #elif cmd == "trivia":
-        #elif cmd == "yeet":
-        elif cmd == "pyramid":
-            #FIXME: Has no error checking or failsafes
-            meme = "PogChamp"
-            if len(self.command) >= 2:
-                meme = self.command[1]
-            msg = memePyramid(meme)
-            for message in msg:
-                self.obj.connection.privmsg(self.obj.channel, message)
-                sleep(2)
-
-        elif cmd == "haiku":
-            msg = haikuMe()
-            for message in msg:
-                self.obj.connection.privmsg(self.obj.channel, message)
-                sleep(2)
-
-        elif cmd == "fact":
-            fact = randomFacts()
-            self.obj.connection.privmsg(self.obj.channel, fact)
-
         elif (cmd == "help" or cmd == "commands") and self.obj.requestor.lower() in self.obj.moderators:
             msg = "The following Commands are available: "
             for each in self.obj.commandList:
@@ -142,6 +143,16 @@ class CommandHandler(object):
                     msg += "{}, ".format(each)
             self.obj.connection.privmsg(self.obj.channel, msg)
 
+        elif cmd == "quote":
+            if len(self.command) >= 2:
+                responseList = quotes(self.command[1], self.command[2])
+            else:
+                responseList = quotes()
+
+            for element in responseList:
+                self.obj.connection.privmsg(self.obj.channel, element)
+                sleep(4)
+                
         # ===== Subscriber Commands ===== #
         #elif cmd == "name":
         #elif cmd == "fubar":
