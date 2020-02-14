@@ -27,6 +27,7 @@ phraseDict = {
         ["Rando: I waited 18 minutes for this to end so quickly? T3chnopanda: I waited my whole life to have sex and it only took 30 seconds."],
         ["You done fk\'d up A-A-ron!"],
         ["Turn her over and then BAM, up the butt. -- Gordon Ramsey"],
+        ["Every whole is a goal. -- T3chnopanda"],
     ],
     'funny': [
         ["You can\'t make something idiot-proof cause God designs the idiots, and he\'s a better bot designer than you. -- Xinthral"],
