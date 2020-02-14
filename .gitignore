@@ -2,7 +2,8 @@
 settings.config
 
 # Byte-compiled / optimized / DLL files
-__pycache__\
+__pycache__/
+*_pycache_*
 *.py[cod]
 *$py.class
 *.pyc
