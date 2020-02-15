@@ -113,9 +113,27 @@ def quotes(phraseType = "positivity", index = -1):
         else:
             quoteIndex = randint(0, len(positivQuoteList)-1)
         response = positivQuoteList.pop(quoteIndex)
+    elif phraseType.lower() == "inspirational":
+        global inspirQuoteList
+        if len(inspirQuoteList) < 1:
+            inspirQuoteList = phraseDict['inspirational'][:]
+        if index > -1:
+            quoteIndex = index
+        else:
+            quoteIndex = randint(0, len(inspirQuoteList)-1)
+        response = inspirQuoteList.pop(quoteIndex)
+    elif phraseType.lower() == "stream":
+        global streamQuoteList
+        if len(streamQuoteList) < 1:
+            streamQuoteList = phraseDict['stream'][:]
+        if index > -1:
+            quoteIndex = index
+        else:
+            quoteIndex = randint(0, len(streamQuoteList)-1)
+        response = streamQuoteList.pop(quoteIndex)
     else:
         error = "Invalid Quote Type."
-        response = quotes('positivity')
+        response = quotes()
         response.insert(0, error)
     return(response)
 
