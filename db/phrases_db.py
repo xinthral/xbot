@@ -28,6 +28,7 @@ phraseDict = {
         ["You done fk\'d up A-A-ron!"],
         ["Turn her over and then BAM, up the butt. -- Gordon Ramsey"],
         ["Every whole is a goal. -- T3chnopanda"],
+        ["I can literally beat my meat, and not have to take it out to dinner. -- T3chnopanda"],
     ],
     'funny': [
         ["You can\'t make something idiot-proof cause God designs the idiots, and he\'s a better bot designer than you. -- Xinthral"],

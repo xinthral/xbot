@@ -144,7 +144,9 @@ class CommandHandler(object):
             self.obj.connection.privmsg(self.obj.channel, msg)
 
         elif cmd == "quote":
-            if len(self.command) >= 2:
+            if len(self.command) == 2:
+                responseList = quotes(self.command[1])
+            elif len(self.command) > 2:
                 responseList = quotes(self.command[1], self.command[2])
             else:
                 responseList = quotes()
@@ -152,7 +154,7 @@ class CommandHandler(object):
             for element in responseList:
                 self.obj.connection.privmsg(self.obj.channel, element)
                 sleep(4)
-                
+
         # ===== Subscriber Commands ===== #
         #elif cmd == "name":
         #elif cmd == "fubar":
