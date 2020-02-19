@@ -2,11 +2,15 @@ import requests, sys
 
 from bs4 import BeautifulSoup
 from os import getcwd
-from random import randint
+from random import randint, seed
 from utils import cnf
+from time import time
 
 from db.jokes_db import jokesDict
 from db.phrases_db import phraseDict
+
+""" Prologue """
+seed(int(time()))
 
 """ Globals """
 dadJokeList = jokesDict['dad'].copy()
@@ -16,6 +20,7 @@ positivQuoteList = phraseDict['positivity'].copy()
 inspirQuoteList = phraseDict['inspirational'].copy()
 streamQuoteList = phraseDict['stream'].copy()
 funnyQuoteList = phraseDict['funny'].copy()
+
 
 def haikuMe():
     wordList1 = ["Enchanting", "Amazing", "Colourful", "Delightful", "Delicate"]
