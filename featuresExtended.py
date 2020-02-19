@@ -21,7 +21,6 @@ inspirQuoteList = phraseDict['inspirational'].copy()
 streamQuoteList = phraseDict['stream'].copy()
 funnyQuoteList = phraseDict['funny'].copy()
 
-
 def haikuMe():
     wordList1 = ["Enchanting", "Amazing", "Colourful", "Delightful", "Delicate"]
     wordList2 = ["visions", "distance", "conscience", "process", "chaos"]
@@ -139,7 +138,6 @@ def quotes(phraseType = "positivity", index = -1):
             else:
                 quoteIndex = randint(0, len(streamQuoteList)-1)
             response = streamQuoteList.pop(quoteIndex)
-
         else:
             error = "Invalid Quote Type."
             response = quotes()
