@@ -176,6 +176,10 @@ class CommandHandler(object):
             message = "Polls!? Polls!? We didn't need no steenking polls!!"
             self.obj.connection.privmsg(self.obj.channel, message)
 
+        elif cmd == "fight":
+            message = "{} throws down against {}!".format(self.obj.requestor, self.command[1])
+            self.obj.connection.privmsg(self.obj.channel, message)
+
         # ===== Developmental Section ===== #
         elif cmd == "mods" and self.obj.requestor.lower() in self.obj.admins:
             if len(self.command) < 2:

@@ -20,14 +20,16 @@ phraseDict = {
         ["You\'re off to great places, today is your day. Your mountain is waiting, so get on your way. -- Dr. Seuss"],
         ["No one is perfect, that\'s why pencils have erasers. -- Wolfgang Riebe"],
         ["It always seems impossible until it is done. -- Nelson Mandela"],
-        ["The sun (himself) is weak when he first rises, and gathers strength and corage as the day gets on. -- Charles Dickens"]
+        ["The sun (himself) is weak when he first rises, and gathers strength and corage as the day gets on. -- Charles Dickens"],
+        ["Sucess is not a result of winning or losing, it's a measurement of your ability to keep making progress; regardless -- T3chnopanda"],
+        ["Positivity is contagious, Inspiration is infectious, and compassion is priceless. -- Xinthral"],
     ],
     'stream': [
         ["Who\'s that cummin up in here with the BDE!?!? -- T3chnopanda"],
         ["Rando: I waited 18 minutes for this to end so quickly? T3chnopanda: I waited my whole life to have sex and it only took 30 seconds."],
         ["You done fk\'d up A-A-ron!"],
         ["Turn her over and then BAM, up the butt. -- Gordon Ramsey"],
-        ["Every whole is a goal. -- T3chnopanda"],
+        ["Every hole is a goal. -- T3chnopanda"],
         ["I can literally beat my meat, and not have to take it out to dinner. -- T3chnopanda"],
     ],
     'funny': [
