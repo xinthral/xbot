@@ -27,7 +27,7 @@ phraseDict = {
         ["Everyone has a history, it is up to you to decide what to do with it.  Some repeat it, some learn from it; but the really special ones use it to help others. -- John Mark Green"],
         ["People will forget the awkward things you said, and the embarrising things you did, but people never forget the way you made them feel. -- Maya Angelou (adapted)"],
         ["Optimist are usually wrong about how the world works, but all the positive changes our world has seen, was done by an optimist who refused to accept the world as it is. -- Thomas Friedman (adapted)"],
-        ["Keep look up...that\'s the secret to life. -- Charlie Brown"]
+        ["Keep looking up...that\'s the secret to life. -- Charlie Brown"]
     ],
     'inspirational' : [
         ["You can choose to love, or you can choose to hate. But you only have enough energy for one, so choose wisely. -- Dad"],
