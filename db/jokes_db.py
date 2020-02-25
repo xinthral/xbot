@@ -62,6 +62,7 @@ jokesDict = {
         ["What do sprinters eat before a race?", "Nothing, they fast!"],
         ["I watched a child go up and hug his mother, walking away they both wore large smiles;", "Walking around the corner, I hear the child tell his father, \"You're right dad, she is gaining weight.\""],
         ["Sometimes it is very important if a sentence was said by a man or a woman,", "A good example: \"I used a whole pack of tissues while watching that movie you lent me!\""],
+        ["Pun\'s about communism aren\'t funny....Unless everyone gets them."]
     ],
     'taboo': [
         ["What do you get when you mix Goat DNA and Human DNA?", "Kicked out of the petting zoo."],

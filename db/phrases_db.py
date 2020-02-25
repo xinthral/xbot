@@ -27,7 +27,9 @@ phraseDict = {
         ["Everyone has a history, it is up to you to decide what to do with it.  Some repeat it, some learn from it; but the really special ones use it to help others. -- John Mark Green"],
         ["People will forget the awkward things you said, and the embarrising things you did, but people never forget the way you made them feel. -- Maya Angelou (adapted)"],
         ["Optimist are usually wrong about how the world works, but all the positive changes our world has seen, was done by an optimist who refused to accept the world as it is. -- Thomas Friedman (adapted)"],
-        ["Keep looking up...that\'s the secret to life. -- Charlie Brown"]
+        ["Keep looking up...that\'s the secret to life. -- Charlie Brown"],
+        ["\'Gotta have a little sadness once in a while so you know when the good times come. I\'m wiaiting on the good tiems now.\' -- Bob Ross said this while painting just after his wife passed. This is strength."],
+        ["The first thought that goes through your head is what you have been conditioned to think, however the next is what defines you so make sure you think it through. -- Mom"]
     ],
     'inspirational' : [
         ["You can choose to love, or you can choose to hate. But you only have enough energy for one, so choose wisely. -- Dad"],
@@ -58,7 +60,9 @@ phraseDict = {
         ["People seldom see the halting and painful steps by which the most success is achieved. -- Anne Sullivan (adapted)"],
         ["The quality, not the longevity of ones life is what is important. -- MLK Jr."],
         ["I have learned that success is to be measured, not so much by the position that one has reached in life, but by the obstacles which one had to overcome while trying to succeed. -- Booker T. Washington (adapted)"],
-        ["The best way to predict the future, is to create it. -- Abraham Lincoln"]
+        ["The best way to predict the future, is to create it. -- Abraham Lincoln"],
+        ["Just remember, up until this point you\'ve survived the worst things the world could throw at you. You\'re strong than you realize. -- Xinthral"],
+        ["A man named Dashrath Manjhi spent 22 years cutting down a mountain to reduce the distance from his village to the hospital (70km down to 1km) so no one else would die from lack of medical care like his wife."]
     ],
     'stream': [
         ["Who\'s that cummin up in here with the BDE!?!? -- T3chnopanda"],
@@ -70,6 +74,9 @@ phraseDict = {
     ],
     'funny': [
         ["You can\'t make something idiot-proof cause God designs the idiots, and he\'s a better bot designer than you. -- Xinthral"],
+        ["Strong people don\'t put people down, they lift people up. -- Darth Vader"],
+        ["You matter....Unless you multiply yourself by the speed of light. Then you energy -- Reddit"],
+        ["In May 2019, it was reported that students had invented a bacteria that can eat plastic from the oceans and turn it into water. The future is waiting, will you go after it or let it pass you by?"]
     ],
     'shower': [
         ["Men probably bond so well with dogs because our society shows less compassion to males and dogs help suppliment that basic human need."],
@@ -81,6 +88,8 @@ phraseDict = {
         ["The bitterest tears shed over graves are for words left unsaid and deeds left undone. -- Harriet Beacher-Stower"],
         ["Music is the shorthand for emotion. -- Leo Tolstoy"],
         ["They said that Rosa Parks sat down in the front because she was too tired to reach the back, her response was \'The only tired I was, was tired of giving in.\'"],
+        ["Every day I wake I play God, for I have the power to change the world!. -- Xinthral"],
+        ["Tradition is just peer pressure from dead people. -- Reddit"]
     ],
     'nerd': [
         ["Through entropy, you will be immortalized forever as it cannot be undone. -- Xinthral"],
