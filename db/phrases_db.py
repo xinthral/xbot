@@ -76,7 +76,9 @@ phraseDict = {
         ["You can\'t make something idiot-proof cause God designs the idiots, and he\'s a better bot designer than you. -- Xinthral"],
         ["Strong people don\'t put people down, they lift people up. -- Darth Vader"],
         ["You matter....Unless you multiply yourself by the speed of light. Then you energy -- Reddit"],
-        ["In May 2019, it was reported that students had invented a bacteria that can eat plastic from the oceans and turn it into water. The future is waiting, will you go after it or let it pass you by?"]
+        ["In May 2019, it was reported that students had invented a bacteria that can eat plastic from the oceans and turn it into water. The future is waiting, will you go after it or let it pass you by?"],
+        ["Arms on your chairs are just chairs for your arms."],
+        ["I heard a trick on how to turn $40 into $400, want to know the secret?", "Put $40 worth of gas in your vehicle and drive your stupid ass to work. -- Chief Chuck"],
     ],
     'shower': [
         ["Men probably bond so well with dogs because our society shows less compassion to males and dogs help suppliment that basic human need."],
@@ -89,7 +91,7 @@ phraseDict = {
         ["Music is the shorthand for emotion. -- Leo Tolstoy"],
         ["They said that Rosa Parks sat down in the front because she was too tired to reach the back, her response was \'The only tired I was, was tired of giving in.\'"],
         ["Every day I wake I play God, for I have the power to change the world!. -- Xinthral"],
-        ["Tradition is just peer pressure from dead people. -- Reddit"]
+        ["Tradition is just peer pressure from dead people. -- Reddit"],
     ],
     'nerd': [
         ["Through entropy, you will be immortalized forever as it cannot be undone. -- Xinthral"],
