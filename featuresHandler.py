@@ -143,7 +143,7 @@ class CommandHandler(object):
                     msg += "{}, ".format(each)
             self.obj.connection.privmsg(self.obj.channel, msg)
 
-        elif cmd == "quote":
+        elif cmd == "quote" or cmd == "phrase":
             if len(self.command) == 2:
                 responseList = quotes(self.command[1])
             elif len(self.command) > 2:
