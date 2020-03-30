@@ -134,6 +134,17 @@ class CommandHandler(object):
                 self.obj.connection.privmsg(self.obj.channel, element)
                 sleep(4)
 
+        elif (cmd == "quote" or cmd == "phrase") and self.obj.requestor.lower() in self.obj.moderators:
+            if len(self.command) == 2:
+                responseList = quotes(self.command[1])
+            elif len(self.command) > 2:
+                responseList = quotes(self.command[1], self.command[2])
+            else:
+                responseList = quotes()
+            for element in responseList:
+                self.obj.connection.privmsg(self.obj.channel, element)
+                sleep(4)
+
         elif (cmd == "help" or cmd == "commands") and self.obj.requestor.lower() in self.obj.moderators:
             msg = "The following Commands are available: "
             for each in self.obj.commandList:
@@ -143,22 +154,9 @@ class CommandHandler(object):
                     msg += "{}, ".format(each)
             self.obj.connection.privmsg(self.obj.channel, msg)
 
-        elif cmd == "quote":
-            if len(self.command) == 2:
-                responseList = quotes(self.command[1])
-            elif len(self.command) > 2:
-                responseList = quotes(self.command[1], self.command[2])
-            else:
-                responseList = quotes()
-
-            for element in responseList:
-                self.obj.connection.privmsg(self.obj.channel, element)
-                sleep(4)
-
         # ===== Subscriber Commands ===== #
         #elif cmd == "name":
         #elif cmd == "fubar":
-        #elif cmd == "quote":
         elif cmd == "play": #playnavi
             if len(self.command) > 1:
                 if self.command[1].lower() == "weed":

@@ -62,7 +62,8 @@ phraseDict = {
         ["I have learned that success is to be measured, not so much by the position that one has reached in life, but by the obstacles which one had to overcome while trying to succeed. -- Booker T. Washington (adapted)"],
         ["The best way to predict the future, is to create it. -- Abraham Lincoln"],
         ["Just remember, up until this point you\'ve survived the worst things the world could throw at you. You\'re strong than you realize. -- Xinthral"],
-        ["A man named Dashrath Manjhi spent 22 years cutting down a mountain to reduce the distance from his village to the hospital (70km down to 1km) so no one else would die from lack of medical care like his wife."]
+        ["A man named Dashrath Manjhi spent 22 years cutting down a mountain to reduce the distance from his village to the hospital (70km down to 1km) so no one else would die from lack of medical care like his wife."],
+        ["When you fail to prepare, you are preparing to fail. -- Benjamin Franklin"]
     ],
     'stream': [
         ["Who\'s that cummin up in here with the BDE!?!? -- T3chnopanda"],
