@@ -134,20 +134,7 @@ class CommandHandler(object):
                 self.obj.connection.privmsg(self.obj.channel, element)
                 sleep(4)
 
-<<<<<<< HEAD
         elif (cmd == "quote" or cmd == "phrase") and self.obj.requestor.lower() in self.obj.moderators:
-=======
-        elif (cmd == "help" or cmd == "commands") and self.obj.requestor.lower() in self.obj.moderators:
-            msg = "The following Commands are available: "
-            for each in self.obj.commandList:
-                if each == self.obj.commandList[-1]:
-                    msg += "{}".format(each)
-                elif each != "help":
-                    msg += "{}, ".format(each)
-            self.obj.connection.privmsg(self.obj.channel, msg)
-
-        elif cmd == "quote" or cmd == "phrase":
->>>>>>> 48559410896017eae550aec05a54e3ead461c7e9
             if len(self.command) == 2:
                 responseList = quotes(self.command[1])
             elif len(self.command) > 2:
@@ -157,15 +144,6 @@ class CommandHandler(object):
             for element in responseList:
                 self.obj.connection.privmsg(self.obj.channel, element)
                 sleep(4)
-
-        elif (cmd == "help" or cmd == "commands") and self.obj.requestor.lower() in self.obj.moderators:
-            msg = "The following Commands are available: "
-            for each in self.obj.commandList:
-                if each == self.obj.commandList[-1]:
-                    msg += "{}".format(each)
-                elif each != "help":
-                    msg += "{}, ".format(each)
-            self.obj.connection.privmsg(self.obj.channel, msg)
 
         # ===== Subscriber Commands ===== #
         #elif cmd == "name":
@@ -204,9 +182,16 @@ class CommandHandler(object):
         #elif cmd == "test" and self.obj.requestor in self.obj.admins:
             #response = "Test"
             #self.obj.connection.privmsg(self.obj.channel, response)
+        elif (cmd == "help" or cmd == "commands") and self.obj.requestor.lower() in self.obj.moderators:
+            msg = "The following Commands are available: "
+            for each in self.obj.commandList:
+                if each == self.obj.commandList[-1]:
+                    msg += "{}".format(each)
+                elif each != "help":
+                    msg += "{}, ".format(each)
+            self.obj.connection.privmsg(self.obj.channel, msg)
 
         # The command was not recognized
         else:
-
             self.obj.connection.privmsg(self.obj.channel, "I'm sorry {}, I'm afraid I can't do that. [{}]".
                      format(self.obj.requestor, cmd))
