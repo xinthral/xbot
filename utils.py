@@ -76,7 +76,18 @@ def timeDelta(dtime):
     return('{}:{:.2f}'.format(int(minutes), seconds))
 
 def randomRoll(inputList):
+    """
+    Returns a random element from the given list
+    """
     from time import perf_counter
     from random import choice, seed
     seed(perf_counter())
     return(choice(inputList))
+
+def threader(func, arguments):
+    """
+    Multiprocessing wrapper
+    """
+    from multiprocessing import Process, Queue
+    queue = Queue()
+    proc = Process(target=func, args=arguments)
