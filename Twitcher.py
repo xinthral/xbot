@@ -20,7 +20,7 @@ from utils import *
 
 CHAN = cnf('SERVER', 'CHANNEL')
 NICK = cnf('AUTH', 'NICK')
-TOKE = cnf('AUTH', 'OAUTH_SECRET')
+TOKE = cnf('AUTH', 'ACCESS_TOKEN')
 IDEN = cnf('AUTH', 'CLIENT_ID')
 
 class NerdKommander(irc.bot.SingleServerIRCBot):
@@ -31,8 +31,11 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
 
         # Get the channel id, we will need this for v5 API calls
         url = 'https://api.twitch.tv/helix/users?login=' + channel
-        self.headers = {'Client-ID': client_id,
-                   'Accept': 'application/vnd.twitchtv.helix+json'}
+        self.headers = {
+            'Client-ID': client_id,
+            'Authorization': 'Bearer ' + self.token,
+            'Accept': 'application/vnd.twitchtv.helix+json'
+            }
         r = requests.get(url, headers=self.headers).json()
         print(r)
         # Generate Permissions List
@@ -78,30 +81,35 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
         match = re.search(self.regex, e.arguments[0])
         if match != None:
             command = match.group()[1:].strip().split(' ')
-            self.requestor = e.tags[3]['value']                                     #FIXME: this should be a for each if 'key' == 'display-name'
-            isMod = e.tags[5]['value']
-            if isMod == '1' and self.requestor.lower() not in self.moderators:
-                self.moderators.append(self.requestor.lower())
-                print("Bot: Added {} to ModList.".format(self.requestor))
+            self.parseTags(e.tags)
 
             #FIXME: Logging Line
-            print('{} requested {}'.format(self.requestor, command[0]))
+            print(f'{self.requestor} requested {command[0]}')
+
             if self.requestor.lower() in self.moderators and command[0].lower() in self.commandList:
                 self.do_command(command)
             else:
                 pass
-
-            # Debug Lines
-            if self.debug:
-                #FIXME: This needs to be logging
-                print("Matches: User:{} Mod:{}".format(self.requestor, isMod))
         return
 
     @Logr
     def do_command(self, command):
-        #FIXME: Devline
-        #headers = {'Client-ID': self.client_id, 'Accept': 'application/vnd.twitchtv.helix+json'}
+        print('CommandHandler')
         CommandHandler(self, command)
+
+    def parseTags(self, tags):
+        isMod = 0
+        for element in tags:
+            if element['key'] == 'display-name':
+                self.requestor = element['value']
+            if element['key'] == 'mod':
+                isMod = int(element['value'])
+
+        # If requestor is a mod and not known, add to known moderator list.
+        if isMod == 1 and self.requestor.lower() not in self.moderators:
+            self.moderators.append(self.requestor.lower())
+            print("Bot: Added {} to ModList.".format(self.requestor))
+        return
 
 def main():
     if len(sys.argv) > 1:
