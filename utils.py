@@ -83,11 +83,3 @@ def randomRoll(inputList):
     from random import choice, seed
     seed(perf_counter())
     return(choice(inputList))
-
-def threader(func, arguments):
-    """
-    Multiprocessing wrapper
-    """
-    from multiprocessing import Process, Queue
-    queue = Queue()
-    proc = Process(target=func, args=arguments)

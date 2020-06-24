@@ -63,8 +63,14 @@ jokesDict = {
         ["I watched a child go up and hug his mother, walking away they both wore large smiles;", "Walking around the corner, I hear the child tell his father, \"You're right dad, she is gaining weight.\""],
         ["Sometimes it is very important if a sentence was said by a man or a woman,", "A good example: \"I used a whole pack of tissues while watching that movie you lent me!\""],
         ["Pun\'s about communism aren\'t funny....Unless everyone gets them."],
-        ["What did the sky-diver their pack didn't open?", "Awww, chute."],
-        ["Do you know why all the words best mathematicians wear glasses?", "Because it helps with da-vision."]
+        ["What did the sky-diver say when their pack didn't open?", "Awww, chute."],
+        ["Do you know why all the words best mathematicians wear glasses?", "Because it helps with da-vision."],
+        ["Mom: Honey, did you cut your hair?", "Dad: No...I cut them all so it would be even. What a weird question.."],
+        ["Why was the math book so troubled?", "It has too many problems."],
+        ["What did they call the 12 inch tall king?", "Their benevolant ruler."],
+        ["I started reading a book about anti-gravity,", "turns out I can't put it down."],
+        ["Why are elevator jokes so popular?", "Because they work on so many levels."],
+        ["Geology rocks, but Geography is where it's at!"],
     ],
     'taboo': [
         ["What do you get when you mix Goat DNA and Human DNA?", "Kicked out of the petting zoo."],
@@ -87,6 +93,9 @@ jokesDict = {
         ["Did you hear about this whack job who coated his testicles in glitter?", "Yeah, from what the reporter was saying I guess it was pretty nuts."],
         ["I guess I scared the mailman when I answered the door in the nude.", "Never did figure out what freaked him out the most", "Maybe it was being buff in the door way, maybe it was the question of how I got in his house.  Who really knows..."],
         ["Did you hear about Elon Musks' sex scandal?", "Apparently they're calling it Elon-gate."],
+        ["My wife just gave birth today and after thanking the doctor, I pulled him aside and sheepishly asked, \“How soon do you think we’ll be able to have sex?\”", "He winked at me and said, “I’m off duty in ten minutes - meet me in the car park."],
+        ["I bought some shoes from this drug dealer earlier", "I'm not sure what laced them with, but I've been trippin all day."],
+
     ],
     'gaming': [
         ["I kept dying in Overwatch earlier while playing Tracer, and the replay was corrupted", "I would like to know why, but it seems I will be unable to recall."],
