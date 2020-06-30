@@ -114,9 +114,7 @@ jokesDict = {
         ["What's the best spec for a druid who doesn't like to shapeshift?", "Restoration, cause once you go tree you never have to leaf it."],
         ["Why did Doomfist recruit Sigma to Talon?", "Da feet makes him stronger."],
     ],
-    'offensive': [
-        ["So, Pokemon Black came out this weekend.", "Gotta Catch Jamal."],
-        ["While playing some Call of Duty with a friend, I asked him who he thought the best CoD player was,","and without missing a beat, he responded 'Hitler'...",
-        "Confused by his response, I made the mistake of inquiring why.", "With a smirk he said, 'Dude, check his K-D.'", "...And that was the last time we spoke."],
+    'nerdy': [
+        ['I feel like autocorrect is that kid in class who, very confidently, yells out wrong answers.'],
     ]
 }

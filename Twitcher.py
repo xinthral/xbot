@@ -37,6 +37,7 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
             'Accept': 'application/vnd.twitchtv.helix+json'
             }
         r = requests.get(url, headers=self.headers).json()
+        print(r)
 
         # Generate Permissions List
         self.admins = cnf('ADMIN', 'ADMINS').split(', ')
