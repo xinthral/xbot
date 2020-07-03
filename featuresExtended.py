@@ -20,6 +20,8 @@ positivQuoteList = phraseDict['positivity'].copy()
 inspirQuoteList = phraseDict['inspirational'].copy()
 streamQuoteList = phraseDict['stream'].copy()
 funnyQuoteList = phraseDict['funny'].copy()
+showerQuoteList = phraseDict['shower'].copy()
+nerdQuoteList = phraseDict['nerd'].copy()
 
 def haikuMe():
     wordList1 = ["Enchanting", "Amazing", "Colourful", "Delightful", "Delicate"]
@@ -129,6 +131,16 @@ def quotes(phraseType = "positivity", index = -1):
                 quoteIndex = randint(0, len(inspirQuoteList)-1)
             response = inspirQuoteList.pop(quoteIndex)
 
+        elif phraseType.lower() == "shower":
+            global showerQuoteList
+            if len(showerQuoteList) < 1:
+                showerQuoteList = phraseDict['shower'][:]
+            if index > -1:
+                quoteIndex = index
+            else:
+                quoteIndex = randint(0, len(showerQuoteList)-1)
+            response = showerQuoteList.pop(quoteIndex)
+
         elif phraseType.lower() == "stream":
             global streamQuoteList
             if len(streamQuoteList) < 1:
@@ -138,6 +150,17 @@ def quotes(phraseType = "positivity", index = -1):
             else:
                 quoteIndex = randint(0, len(streamQuoteList)-1)
             response = streamQuoteList.pop(quoteIndex)
+
+        elif phraseType.lower() == "nerd":
+            global nerdQuoteList
+            if len(nerdQuoteList) < 1:
+                nerdQuoteList = phraseDict['nerd'][:]
+            if index > -1:
+                quoteIndex = index
+            else:
+                quoteIndex = randint(0, len(nerdQuoteList)-1)
+            response = nerdQuoteList.pop(quoteIndex)
+
         else:
             error = "Invalid Quote Type."
             response = quotes()

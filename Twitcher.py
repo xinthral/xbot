@@ -65,7 +65,7 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
         server = 'irc.chat.twitch.tv'
         port = 6667
         print('Connecting to ' + server + ' on port ' + str(port) + '...')
-        irc.bot.SingleServerIRCBot.__init__(self, [(server, port, 'oauth:' + token)],
+        irc.bot.SingleServerIRCBot.__init__(self, [(server, port, f'oauth:{token}')],
                                             username, username)
 
     def on_welcome(self, c, e):

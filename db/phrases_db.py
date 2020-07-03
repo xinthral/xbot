@@ -85,7 +85,7 @@ phraseDict = {
     'shower': [
         ["Men probably bond so well with dogs because our society shows less compassion to males and dogs help suppliment that basic human need."],
         ["In 2014, Mathematicians solved the problem of superpermutations. In 2019, it was discovered that a random 4-chan user had solved it and posted their results in 2011"],
-        ["The ability to forget is my superpower, less we'd be forced to carry the full weight of our history. -- xinthral"],
+        ["The ability to forget is my superpower, less we'd be forced to carry the full weight of our history. -- Xinthral"],
         ["By learning to be okay with being alone, you allow yourself to be more choosy with whom you invite into your space. -- Mandy Hale (adapted)"],
         ["I walk slowly, but I never walk backwards. -- Abraham Lincoln"],
         ["Death is nature's way of saying, \'Your table is ready.\' -- Robin Williams"],
@@ -94,9 +94,10 @@ phraseDict = {
         ["They said that Rosa Parks sat down in the front because she was too tired to reach the back, her response was \'The only tired I was, was tired of giving in.\'"],
         ["Every day I wake I play God, for I have the power to change the world!. -- Xinthral"],
         ["Tradition is just peer pressure from dead people. -- Reddit"],
+        ["We have so many ways to express a grudge, and only one to accept an apology. -- Horizon ZeroDawn"]
     ],
     'nerd': [
         ["Through entropy, you will be immortalized forever as it cannot be undone. -- Xinthral"],
-
+        ["What keeps me running back to my office every morning, is the prospect that we could be on the heels of a major discorvery. Answering a question that we might have posed already, but possibly revealing a question that we had not previously known to ask.... That's my muse. -- Neil DeGrasse Tyson"],
     ]
 }
