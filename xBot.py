@@ -18,11 +18,6 @@ from featuresExtended import *
 from featuresHandler import *
 from utils import *
 
-CHAN = cnf('SERVER', 'CHANNEL')
-NICK = cnf('AUTH', 'NICK')
-TOKE = cnf('AUTH', 'ACCESS_TOKEN')
-IDEN = cnf('AUTH', 'CLIENT_ID')
-
 class NerdKommander(irc.bot.SingleServerIRCBot):
     def __init__(self, username, client_id, token, channel):
         self.client_id = client_id
@@ -38,6 +33,8 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
             }
         r = requests.get(url, headers=self.headers).json()
         print(r)
+        if r['status'] == 401:
+            sys.exit(0)
 
         # Generate Permissions List
         self.admins = cnf('ADMIN', 'ADMINS').split(', ')
@@ -110,24 +107,3 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
             self.moderators.append(self.requestor.lower())
             print("Bot: Added {} to ModList.".format(self.requestor))
         return
-
-def main():
-    if len(sys.argv) > 1:
-        channel = sys.argv[1]
-        #print("Usage: twitchbot <username> <client id> <token> <channel>")
-        #sys.exit(1)
-    else:
-        channel = CHAN
-
-    username  = NICK
-    client_id = IDEN
-    token     = TOKE
-
-    try:
-        bot = NerdKommander(username, client_id, token, channel)
-        bot.start()
-    except KeyboardInterrupt:
-        print("Shutting down...")
-
-if __name__ == "__main__":
-    main()
