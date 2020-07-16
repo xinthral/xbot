@@ -27,14 +27,14 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
         # Get the channel id, we will need this for v5 API calls
         url = 'https://api.twitch.tv/helix/users?login=' + channel
         self.headers = {
-            'Client-ID': client_id,
-            'Authorization': 'Bearer ' + self.token,
-            'Accept': 'application/vnd.twitchtv.helix+json'
+            'Accept': 'application/vnd.twitchtv.helix+json',
+            'Authorization': f'Bearer {self.token}',
+            'Client-ID': self.client_id,
             }
         r = requests.get(url, headers=self.headers).json()
-        print(r)
-        if r['status'] == 401:
-            sys.exit(0)
+        # print(r)
+        # if r['status'] != 200:
+        #     sys.exit(0)
 
         # Generate Permissions List
         self.admins = cnf('ADMIN', 'ADMINS').split(', ')

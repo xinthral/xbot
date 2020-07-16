@@ -28,7 +28,7 @@ phraseDict = {
         ["People will forget the awkward things you said, and the embarrising things you did, but people never forget the way you made them feel. -- Maya Angelou (adapted)"],
         ["Optimist are usually wrong about how the world works, but all the positive changes our world has seen, was done by an optimist who refused to accept the world as it is. -- Thomas Friedman (adapted)"],
         ["Keep looking up...that\'s the secret to life. -- Charlie Brown"],
-        ["\'Gotta have a little sadness once in a while so you know when the good times come. I\'m wiaiting on the good tiems now.\' -- Bob Ross said this while painting just after his wife passed. This is strength."],
+        ["\'Gotta have a little sadness once in a while so you know when the good times come. I\'m waiting on the good times now.\' -- Bob Ross said this while painting just after his wife passed. This is strength."],
         ["The first thought that goes through your head is what you have been conditioned to think, however the next is what defines you so make sure you think it through. -- Mom"]
     ],
     'inspirational' : [

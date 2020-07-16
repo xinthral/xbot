@@ -2,7 +2,7 @@ def cnf(section, setting):
     import os
     from configparser import ConfigParser
 
-    ConfigFile = os.getcwd() + "\\settings.config"
+    ConfigFile = os.getcwd() + "/settings.config"
 
     config = ConfigParser()
     config.read(ConfigFile)
@@ -24,18 +24,18 @@ def Logr(orig_func, logFile = 'master.log'):
     import logging, os
     try:
         logging.basicConfig(
-            filename = 'loggrs\\master.log',
+            filename = 'loggrs/master.log',
             level = logging.INFO,
             format = '%(asctime)s %(message)s',
             datefmt = '[%B %d, %Y] %H:%M:%S'
         )
     except FileNotFoundError:
-        newPath = os.getcwd() + "\\logr\\"
+        newPath = os.getcwd() + "/logr/"
         if not os.path.exists(newPath):
             print("{} Creating missing directory: {}".format(timeStamp(), newPath))
             os.makedirs(newPath)
         if not os.path.exists("{}{}".format(newPath, logFile)):
-            print("Creating missing file: 'logr\\{}'".format(logFile))
+            print("Creating missing file: 'logr/{}'".format(logFile))
             open(os.path.join(newPath, logFile), 'w').close()
     finally:
         def wrapper(*args, **kwargs):
