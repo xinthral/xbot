@@ -1,30 +1,26 @@
+from theatre import BattleField
 from random import seed, choice
 from time import perf_counter
-
-class BattleField(object):
-    """
-    The one to rule them all....or manage all the players atleast
-    """
-    pass
 
 class Battle(object):
     """
     Many to Many
     """
     def __init__(self, bot):
-
-        self.players = [bot]
+        self.battlefield = Battlefield()
+        self.players = []
+        self.referee = bot
         self.rumble()
 
     def duel(self):
         """
-        Function that allows players to target another player to battle
+        Allows players to target another player to battle
         """
         pass
 
     def pairOff(self):
         """
-        Function that random chooses a pair from the players list to battle
+        Randomly chooses a pair from the players list to battle
         """
         pass
 

@@ -24,17 +24,18 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
         self.token = token
         self.channel = '#' + channel
 
-        # Get the channel id, we will need this for v5 API calls
+        # Get the channel id, we will need this for new API calls
         url = 'https://api.twitch.tv/helix/users?login=' + channel
         self.headers = {
             'Accept': 'application/vnd.twitchtv.helix+json',
             'Authorization': f'Bearer {self.token}',
             'Client-ID': self.client_id,
             }
-        r = requests.get(url, headers=self.headers).json()
-        # print(r)
-        # if r['status'] != 200:
-        #     sys.exit(0)
+        r = requests.get(url, headers=self.headers)
+        if r.status_code != 200:
+            sys.exit(0)
+        else:
+            r = r.json()
 
         # Generate Permissions List
         self.admins = cnf('ADMIN', 'ADMINS').split(', ')
@@ -80,7 +81,6 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
         if match != None:
             command = match.group()[1:].strip().split(' ')
             self.parseTags(e.tags)
-
             #FIXME: Logging Line
             print(f'{self.requestor} requested {command[0]}')
 
@@ -105,5 +105,5 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
         # If requestor is a mod and not known, add to known moderator list.
         if isMod == 1 and self.requestor.lower() not in self.moderators:
             self.moderators.append(self.requestor.lower())
-            print("Bot: Added {} to ModList.".format(self.requestor))
+            print(f'Bot: Added {self.requstor} to ModList.')
         return
