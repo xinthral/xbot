@@ -62,7 +62,7 @@ def api_games(args=None):
     return(response)
 
 def tmi_chatters(args=None):
-    """ Pulls Chatter stats from a Stream """
+    """ Pulls Chatter stats from Twitch """
     if args != None:
         url = "https://tmi.twitch.tv/group/user/{}/chatters".format(args)
         response = requests.get(url).json()
@@ -89,7 +89,7 @@ def api_follows(args=None):
     return(response)
 
 def api_channel(args=None):
-    """ Polls Channels Method from stream """
+    """ Polls Channels Method from Twitch """
     if args != None:
         url = "https://api.twitch.tv/kraken/channels/{}/videos".format(args)
         response = requests.get(url).json()
