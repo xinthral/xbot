@@ -1,5 +1,6 @@
 phraseDict = {
     'positivity' : [
+        ["A positive attitude gives you power over your circumstances instead of your circumstances having power over you."],
         ["I\'m on that positivity flow, I\'ll blind the darkness with my glow, we out here letting everyone know, it\'s going down SO LETS GO!!!!"],
         ["The most important thing you will ever wear is your attitude."],
         ["Dr. Barbara Fredrickson (a medical researcher) discovered that experiencing positive emotions broadens people\'s minds and builds their resourcefulness in ways that help them become more resilient to adversity."],
@@ -63,7 +64,8 @@ phraseDict = {
         ["The best way to predict the future, is to create it. -- Abraham Lincoln"],
         ["Just remember, up until this point you\'ve survived the worst things the world could throw at you. You\'re strong than you realize. -- Xinthral"],
         ["A man named Dashrath Manjhi spent 22 years cutting down a mountain to reduce the distance from his village to the hospital (70km down to 1km) so no one else would die from lack of medical care like his wife."],
-        ["When you fail to prepare, you are preparing to fail. -- Benjamin Franklin"]
+        ["When you fail to prepare, you are preparing to fail. -- Benjamin Franklin"],
+        ["We've got to turn our fear into fight, and worry into work. -- Cory Booker"]
     ],
     'stream': [
         ["Who\'s that cummin up in here with the BDE!?!? -- T3chnopanda"],
@@ -94,7 +96,9 @@ phraseDict = {
         ["They said that Rosa Parks sat down in the front because she was too tired to reach the back, her response was \'The only tired I was, was tired of giving in.\'"],
         ["Every day I wake I play God, for I have the power to change the world!. -- Xinthral"],
         ["Tradition is just peer pressure from dead people. -- Reddit"],
-        ["We have so many ways to express a grudge, and only one to accept an apology. -- Horizon ZeroDawn"]
+        ["We have so many ways to express a grudge, and only one to accept an apology. -- Horizon ZeroDawn"],
+        ["I have absolutely no pleasure in the stimulants in which I sometimes so madly indulge. It has not been in the pursuit of pleasure that I have periled life and reputation and reason. It has been the desperate attempt to escape from torturing memories, from a sense of insupportable loneliness and a dread of some strange impending doom. -- Edgar Allen Poe"],
+        ["Politics is the art of looking for trouble, finding it everywhere, diagnosing it incorrectly and applying the wrong remedies. -- Groucho Marx"]
     ],
     'nerd': [
         ["Through entropy, you will be immortalized forever as it cannot be undone. -- Xinthral"],

@@ -95,7 +95,9 @@ jokesDict = {
         ["I guess I scared the mailman when I answered the door in the nude.", "Never did figure out what freaked him out the most", "Maybe it was being buff in the door way, maybe it was the question of how I got in his house.  Who really knows..."],
         ["Did you hear about Elon Musks' sex scandal?", "Apparently they're calling it Elon-gate."],
         ["My wife just gave birth today and after thanking the doctor, I pulled him aside and sheepishly asked, \“How soon do you think we’ll be able to have sex?\”", "He winked at me and said, “I’m off duty in ten minutes - meet me in the car park."],
-        ["I bought some shoes from this drug dealer earlier", "I'm not sure what laced them with, but I've been trippin all day."]
+        ["I bought some shoes from this drug dealer earlier", "I'm not sure what he laced them with, but I've been trippin all day."],
+        ["When asked who my favorite vampire was, I said \"that muppet from Sesame Street.\"",
+        "They said that, \"he doesn't count,\" to which I responded \"You are most certainly mistaken.\""]
     ],
     'gaming': [
         ["I kept dying in Overwatch earlier while playing Tracer, and the replay was corrupted", "I would like to know why, but it seems I will be unable to recall."],
