@@ -65,7 +65,8 @@ phraseDict = {
         ["Just remember, up until this point you\'ve survived the worst things the world could throw at you. You\'re strong than you realize. -- Xinthral"],
         ["A man named Dashrath Manjhi spent 22 years cutting down a mountain to reduce the distance from his village to the hospital (70km down to 1km) so no one else would die from lack of medical care like his wife."],
         ["When you fail to prepare, you are preparing to fail. -- Benjamin Franklin"],
-        ["We've got to turn our fear into fight, and worry into work. -- Cory Booker"]
+        ["We've got to turn our fear into fight, and worry into work. -- Cory Booker"],
+        ["Lifes most persistent and urgent question is, \'What are you doing for others?\' -- MLK Jr."]
     ],
     'stream': [
         ["Who\'s that cummin up in here with the BDE!?!? -- T3chnopanda"],
