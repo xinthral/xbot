@@ -97,7 +97,8 @@ jokesDict = {
         ["My wife just gave birth today and after thanking the doctor, I pulled him aside and sheepishly asked, \“How soon do you think we’ll be able to have sex?\”", "He winked at me and said, “I’m off duty in ten minutes - meet me in the car park."],
         ["I bought some shoes from this drug dealer earlier", "I'm not sure what he laced them with, but I've been trippin all day."],
         ["When asked who my favorite vampire was, I said \"that muppet from Sesame Street.\"",
-        "They said that, \"he doesn't count,\" to which I responded \"You are most certainly mistaken.\""]
+        "They said that, \"he doesn't count,\" to which I responded \"You are most certainly mistaken.\""],
+        ["What do you get when you try to cross the Atlantic ocean, with the Titanic?", "Half-way."],
     ],
     'gaming': [
         ["I kept dying in Overwatch earlier while playing Tracer, and the replay was corrupted", "I would like to know why, but it seems I will be unable to recall."],
@@ -117,6 +118,6 @@ jokesDict = {
         ["Why did Doomfist recruit Sigma to Talon?", "Da feet makes him stronger."],
     ],
     'nerdy': [
-        ['I feel like autocorrect is that kid in class who, very confidently, yells out wrong answers.']
+        ['I feel like autocorrect is that kid in class who, very confidently, yells out wrong answers.'],
     ]
 }

@@ -66,7 +66,8 @@ phraseDict = {
         ["A man named Dashrath Manjhi spent 22 years cutting down a mountain to reduce the distance from his village to the hospital (70km down to 1km) so no one else would die from lack of medical care like his wife."],
         ["When you fail to prepare, you are preparing to fail. -- Benjamin Franklin"],
         ["We've got to turn our fear into fight, and worry into work. -- Cory Booker"],
-        ["Lifes most persistent and urgent question is, \'What are you doing for others?\' -- MLK Jr."]
+        ["Lifes most persistent and urgent question is, \'What are you doing for others?\' -- MLK Jr."],
+        ["Think only in the moment, when you\'re being creative. -- Busta Rhymes"]
     ],
     'stream': [
         ["Who\'s that cummin up in here with the BDE!?!? -- T3chnopanda"],
