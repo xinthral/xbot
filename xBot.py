@@ -13,6 +13,7 @@ import irc.bot
 import re
 import requests
 import time
+import threading
 from apiHandler import *
 from featuresExtended import *
 from featuresHandler import *
@@ -92,7 +93,9 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
 
     @Logr
     def do_command(self, command):
-        CommandHandler(self, command)
+        t1 = threading.Thread(target=CommandHandler, args=(self, command))
+        t1.start()
+        # CommandHandler(self, command)
 
     def parseTags(self, tags):
         isMod = 0

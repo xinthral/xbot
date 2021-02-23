@@ -116,7 +116,9 @@ class CommandHandler(object):
         elif cmd == "jokes" or cmd == "joke":
             if len(self.command) >= 2:
                 if self.command[1].lower() in self.obj.allowedJokes:
-                    if len(self.command) > 2:
+                    if len(self.command) > 3:
+                        responseList = jokes(self.command[1], self.command[2], self.command[3])
+                    elif len(self.command) > 2:
                         responseList = jokes(self.command[1], self.command[2])
                     else:
                         responseList = jokes(self.command[1])

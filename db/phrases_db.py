@@ -30,7 +30,8 @@ phraseDict = {
         ["Optimist are usually wrong about how the world works, but all the positive changes our world has seen, was done by an optimist who refused to accept the world as it is. -- Thomas Friedman (adapted)"],
         ["Keep looking up...that\'s the secret to life. -- Charlie Brown"],
         ["\'Gotta have a little sadness once in a while so you know when the good times come. I\'m waiting on the good times now.\' -- Bob Ross said this while painting just after his wife passed. This is strength."],
-        ["The first thought that goes through your head is what you have been conditioned to think, however the next is what defines you so make sure you think it through. -- Mom"]
+        ["The first thought that goes through your head is what you have been conditioned to think, however the next is what defines you so make sure you think it through. -- Mom"],
+        ["Sometimes we need a little rain to get the rainbow."]
     ],
     'inspirational' : [
         ["You can choose to love, or you can choose to hate. But you only have enough energy for one, so choose wisely. -- Dad"],
@@ -67,7 +68,8 @@ phraseDict = {
         ["When you fail to prepare, you are preparing to fail. -- Benjamin Franklin"],
         ["We've got to turn our fear into fight, and worry into work. -- Cory Booker"],
         ["Lifes most persistent and urgent question is, \'What are you doing for others?\' -- MLK Jr."],
-        ["Think only in the moment, when you\'re being creative. -- Busta Rhymes"]
+        ["Think only in the moment, when you\'re being creative. -- Busta Rhymes"],
+        ["I think love matures as you get older, you stop looking for that spark of passion and start looking for that consistent comfort. -- Xinthral"],
     ],
     'stream': [
         ["Who\'s that cummin up in here with the BDE!?!? -- T3chnopanda"],

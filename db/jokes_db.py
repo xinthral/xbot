@@ -1,5 +1,6 @@
 jokesDict = {
     'dad': [
+        ["Where did Captain Hook originally get his hook?", "From a second-hand store..."],
         ["I was working on a joke about Sodium...but then I thought Na!", "Tada, chemistry!"],
         ["Why can\'t a bicycle stand on its own?", "It\'s two-tired."],
         ["What\'s the best thing about living in Switzerland,", "I don\'t know, but I hear their flag is a big plus."],
