@@ -60,7 +60,7 @@ class Fight(object):
             self.p2 = tmpUsr
 
 if __name__ == "__main__":
-    from user import Player
+    from roles import Combatant
 
     usr1 = Player("Tester", "Kodo", 0, 1, 5, 0)
     usr2 = Player("Tester", "Podo", 0, 1, 5, 0)
