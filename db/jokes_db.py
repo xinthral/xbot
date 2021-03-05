@@ -74,7 +74,7 @@ jokesDict = {
         ["Geology rocks, but Geography is where it's at!"],
         ["What do you call a masterbating bull?", "Beef stroken-off...."],
         ["When should you go to the dentist?", "Tooth-hurty."],
-        ["Did you know the first French fries weren’t actually cooked in France?", "They were cooked in Greece."]
+        ["Did you know the first French fries weren’t actually cooked in France?", "They were cooked in Greece."],
     ],
     'taboo': [
         ["What do you get when you mix Goat DNA and Human DNA?", "Kicked out of the petting zoo."],
