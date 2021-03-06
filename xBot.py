@@ -98,5 +98,5 @@ class NerdKommander(irc.bot.SingleServerIRCBot):
         # If requestor is a mod and not known, add to known moderator list.
         if isMod == 1 and self.requestor.lower() not in self.moderators:
             self.moderators.append(self.requestor.lower())
-            print(f'Bot: Added {self.requstor} to ModList.')
+            print(f'Bot: Added {self.requestor} to ModList.')
         return
