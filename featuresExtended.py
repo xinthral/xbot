@@ -6,22 +6,23 @@ from random import randint, seed
 from utils import cnf
 from time import time
 
-from db.jokes_db import jokesDict
-from db.phrases_db import phraseDict
+from dispatch.jokes_db import jokesDict
+from dispatch.phrases_db import phraseDict
 
 """ Prologue """
 seed(int(time()))
 
 """ Globals """
 dadJokeList = jokesDict['dad'].copy()
-tabooJokeList = jokesDict['taboo'].copy()
+tabooJokeList = jokesDict['adult'].copy()
 gamingJokeList = jokesDict['gaming'].copy()
+nerdyJokeList = jokesDict['nerdy'].copy()
 positivQuoteList = phraseDict['positivity'].copy()
 inspirQuoteList = phraseDict['inspirational'].copy()
 streamQuoteList = phraseDict['stream'].copy()
 funnyQuoteList = phraseDict['funny'].copy()
 showerQuoteList = phraseDict['shower'].copy()
-nerdQuoteList = phraseDict['nerd'].copy()
+nerdQuoteList = phraseDict['nerdy'].copy()
 
 def haikuMe():
     wordList1 = ["Enchanting", "Amazing", "Colourful", "Delightful", "Delicate"]
