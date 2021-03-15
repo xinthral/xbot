@@ -104,7 +104,7 @@ phraseDict = {
         ["I have absolutely no pleasure in the stimulants in which I sometimes so madly indulge. It has not been in the pursuit of pleasure that I have periled life and reputation and reason. It has been the desperate attempt to escape from torturing memories, from a sense of insupportable loneliness and a dread of some strange impending doom. -- Edgar Allen Poe"],
         ["Politics is the art of looking for trouble, finding it everywhere, diagnosing it incorrectly and applying the wrong remedies. -- Groucho Marx"]
     ],
-    'nerd': [
+    'nerdy': [
         ["Through entropy, you will be immortalized forever as it cannot be undone. -- Xinthral"],
         ["What keeps me running back to my office every morning, is the prospect that we could be on the heels of a major discorvery. Answering a question that we might have posed already, but possibly revealing a question that we had not previously known to ask.... That's my muse. -- Neil DeGrasse Tyson"],
     ]

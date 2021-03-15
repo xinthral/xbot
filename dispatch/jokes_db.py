@@ -39,7 +39,7 @@ jokesDict = {
         ["I had a joke about a broken pencil, but I can\'t seem to remember how it goes....", "It doesn\'t matter anyway, it was pointless."],
         ["What country has the fastest-growing capital?", "Ireland, cause everyday it's Dublin."],
         ["The other day I had a clown open the door for me;", "Such a nice Jester."],
-        ["Why can\'t you run in a campground?", "You can only \"ran\", since it\'s past tents."],
+        ["Why can't you run in a campground?", "Since it's past tents, you can only ran."],
         ["Why do scuba divers fall backwards out of the boat?", "Because if they fell forwards they'd still be in the boat."],
         ["When does a joke become a dad joke?", "When it becomes apparent;", "When does it become apparent?", "After the delivery"],
         ["I never tell jokes to a klepto,","they tend to take things literally."],
@@ -77,7 +77,7 @@ jokesDict = {
         ["Did you know the first French fries weren’t actually cooked in France?", "They were cooked in Greece."],
         ["Someone recently asked me what the worst day of my life was....", "I'm going to have to say 2020, any one else with me?"],
     ],
-    'taboo': [
+    'adult': [
         ["What do you get when you mix Goat DNA and Human DNA?", "Kicked out of the petting zoo."],
         ["The day the brothel closed down they hung a sign on the door,", "It read, \"Beat it, we're closed.\""],
         ["Why does Santa Claus carry around such a big sack?", "Cause he only comes once a year."],
