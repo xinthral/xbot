@@ -168,7 +168,8 @@ class CommandHandler(object):
             self.obj.connection.privmsg(self.obj.channel, message)
 
         elif cmd == "fight":
-            message = "{} throws down against {}!".format(self.obj.requestor, self.command[1])
+            # message = "{} throws down against {}!".format(self.obj.requestor, self.command[1])
+            message = "{} attempts to throws down against {}, but the command is disabled!".format(self.obj.requestor, self.command[1])
             self.obj.connection.privmsg(self.obj.channel, message)
 
         # ===== Developmental Section ===== #
