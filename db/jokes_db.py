@@ -35,8 +35,8 @@ jokesDict = {
         ["Did you hear about that octopus that ended the 1996 elmo craze?", "Apparently Elmo got outsold ten-tickles to one."],
         ["To the person who invented the shovel,", "You were ground-breaking!"],
         ["I find all these jokes about german sausage highly offensive;", "They\'re just the wurst."],
-        ["A woman walks past the bathroom to see her husband standing on the scale, sucking in his stomach.  \"Ha, that's not going to help,\" she says;", "The man responds, \"Sure it does, it\'s the only way I can see the numbers.\""],
-        ["I had a joke about a broken pencil, but I can't seem to remember how it goes....", "It doesn\'t matter anyway, it was pointless."],
+        ["A woman walks past the bathroom to see her husband standing on the scale, sucking in his stomach.  \'Ha, that is not going to help,\' she says;", "The man responds, \'Sure it does, its the only way I can see the numbers.\'"],
+        ["I had a joke about a broken pencil, but I can\'t seem to remember how it goes....", "It doesn\'t matter anyway, it was pointless."],
         ["What country has the fastest-growing capital?", "Ireland, cause everyday it's Dublin."],
         ["The other day I had a clown open the door for me;", "Such a nice Jester."],
         ["Why can\'t you run in a campground?", "You can only \"ran\", since it\'s past tents."],
@@ -75,6 +75,7 @@ jokesDict = {
         ["What do you call a masterbating bull?", "Beef stroken-off...."],
         ["When should you go to the dentist?", "Tooth-hurty."],
         ["Did you know the first French fries weren’t actually cooked in France?", "They were cooked in Greece."],
+        ["Someone recently asked me what the worst day of my life was....", "I'm going to have to say 2020, any one else with me?"],
     ],
     'taboo': [
         ["What do you get when you mix Goat DNA and Human DNA?", "Kicked out of the petting zoo."],
