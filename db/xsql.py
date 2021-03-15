@@ -2,11 +2,13 @@ import sqlite3
 from os import getcwd
 
 class Database:
+    """ Static Class Scope Variables """
     _delim = ';::;'
     _library = 'library.db'
     _tables = ['jokes', 'phrases']
 
     def create_connection(db_file=_library):
+        """ Establish Connection to database object and return connection object """
         conn = None
         try:
             conn = sqlite3.connect(db_file)
@@ -15,6 +17,7 @@ class Database:
         return(conn)
 
     def queryTableAll(tbl_name=_tables[0]):
+        """ Query all items from a specific database in the database object """
         con = Database.create_connection()
         c = con.cursor()
         c.execute(f"SELECT * FROM {tbl_name}")
@@ -23,6 +26,7 @@ class Database:
         return(rows)
 
     def getTableSchema(tbl_name=_tables[0]):
+        """ Query Schema for specific table in database object """
         con = Database.create_connection()
         c = con.cursor()
         c.execute(f"PRAGMA table_info({tbl_name})")
@@ -31,6 +35,7 @@ class Database:
         return(rows)
 
     def getTableHeaders(tbl_name=_tables[0]):
+        """ Query Headers for specific table in database object """
         return([ele[1] for ele in Database.getTableSchema(tbl_name)])
 
     def insertJoke(payload, tbl_name=_tables[0], delim=_delim):
@@ -49,9 +54,11 @@ class Database:
         return(True)
 
     def insertPhrase(payload):
+        """ Inserts phrase payload into database object (wrapper) """
         return(Database.insertJoke(payload, 'phrases'))
 
     def showTables():
+        """ Query table names from database object """
         con = Database.create_connection()
         c = con.cursor()
         c.execute("SELECT name FROM sqlite_master WHERE type='table'")
@@ -60,6 +67,7 @@ class Database:
         return(rows)
 
     def getTableCount(tbl_name=_tables[0]):
+        """ Query item count from a specific table in database object """
         con = Database.create_connection()
         c = con.cursor()
         c.execute(f'SELECT COUNT(*) FROM {tbl_name}')
@@ -67,7 +75,20 @@ class Database:
         con.close()
         return(count)
 
+    def queryTableCategory(tbl_name=_tables[0], cat='dad'):
+        """
+        Query all elements for a specific category from a table in the database object
+        """
+        con = Database.create_connection()
+        c = con.cursor()
+        c.execute(f'''SELECT * FROM {tbl_name} WHERE category=\'{cat}\';''')
+        rows = c.fetchall()
+        con.close()
+        return(rows)
+
+""" HELPER FUNCTIONS """
 def convertJokesDict(category='dad'):
+    """ Converts the jokes dictionary into formmated joke for database object """
     from jokes_db import jokesDict as jlist
     rejected = []
     db = Database
@@ -80,6 +101,7 @@ def convertJokesDict(category='dad'):
     return(rejected)
 
 def convertPhraseDict(category='positivity'):
+    """ Converts the phrases dictionary into formmated phrase for database object """
     from phrases_db import phraseDict as plist
     rejected = []
     db = Database
