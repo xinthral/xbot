@@ -38,7 +38,7 @@ class Database:
             print('Empty Payload')
             return(False)
 
-        columns = tuple(Database.getTableHeaders())
+        columns = tuple(Database.getTableHeaders(tbl_name))
         con = Database.create_connection()
         c = con.cursor()
         elements = (Database.getTableCount(tbl_name), *payload, )
@@ -47,6 +47,9 @@ class Database:
         con.commit()
         con.close()
         return(True)
+
+    def insertPhrase(payload):
+        return(Database.insertJoke(payload, 'phrases'))
 
     def showTables():
         con = Database.create_connection()
@@ -63,3 +66,27 @@ class Database:
         count = c.fetchone()[0]
         con.close()
         return(count)
+
+def convertJokesDict(category='dad'):
+    from jokes_db import jokesDict as jlist
+    rejected = []
+    db = Database
+    for joke in jlist[category]:
+        try:
+            joke = ';::;'.join(joke)
+            db.insertJoke([joke, category, False])
+        except Exception as ee:
+            rejected.append((joke, ee))
+    return(rejected)
+
+def convertPhraseDict(category='positivity'):
+    from phrases_db import phraseDict as plist
+    rejected = []
+    db = Database
+    for phrase in plist[category]:
+        try:
+            phrase = ';::;'.join(phrase)
+            db.insertPhrase([phrase, category, False])
+        except Exception as ee:
+            rejected.apppend((phrase, ee))
+    return(rejected)
