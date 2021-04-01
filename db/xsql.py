@@ -38,7 +38,7 @@ class Database:
         """ Query Headers for specific table in database object """
         return([ele[1] for ele in Database.getTableSchema(tbl_name)])
 
-    def insertJoke(payload, tbl_name=_tables[0], delim=_delim):
+    def insert(payload, tbl_name=_tables[0], delim=_delim):
         if len(payload[0].split(delim)) < 1:
             print('Empty Payload')
             return(False)
@@ -53,9 +53,13 @@ class Database:
         con.close()
         return(True)
 
+    def insertJoke(payload):
+        """ Inserts phrase payload into database object (wrapper) """
+        return(Database.insert(payload, 'jokes'))
+
     def insertPhrase(payload):
         """ Inserts phrase payload into database object (wrapper) """
-        return(Database.insertJoke(payload, 'phrases'))
+        return(Database.insert(payload, 'phrases'))
 
     def showTables():
         """ Query table names from database object """
@@ -86,29 +90,30 @@ class Database:
         con.close()
         return(rows)
 
-""" HELPER FUNCTIONS """
-def convertJokesDict(category='dad'):
-    """ Converts the jokes dictionary into formmated joke for database object """
-    from jokes_db import jokesDict as jlist
-    rejected = []
-    db = Database
-    for joke in jlist[category]:
-        try:
-            joke = ';::;'.join(joke)
-            db.insertJoke([joke, category, False])
-        except Exception as ee:
-            rejected.append((joke, ee))
-    return(rejected)
-
-def convertPhraseDict(category='positivity'):
-    """ Converts the phrases dictionary into formmated phrase for database object """
-    from phrases_db import phraseDict as plist
-    rejected = []
-    db = Database
-    for phrase in plist[category]:
-        try:
-            phrase = ';::;'.join(phrase)
-            db.insertPhrase([phrase, category, False])
-        except Exception as ee:
-            rejected.apppend((phrase, ee))
-    return(rejected)
+# DEFUNC
+# """ HELPER FUNCTIONS """
+# def convertJokesDict(category='dad'):
+#     """ Converts the jokes dictionary into formmated joke for database object """
+#     from jokes_db import jokesDict as jlist
+#     rejected = []
+#     db = Database
+#     for joke in jlist[category]:
+#         try:
+#             joke = ';::;'.join(joke)
+#             db.insertJoke([joke, category, False])
+#         except Exception as ee:
+#             rejected.append((joke, ee))
+#     return(rejected)
+#
+# def convertPhraseDict(category='positivity'):
+#     """ Converts the phrases dictionary into formmated phrase for database object """
+#     from phrases_db import phraseDict as plist
+#     rejected = []
+#     db = Database
+#     for phrase in plist[category]:
+#         try:
+#             phrase = ';::;'.join(phrase)
+#             db.insertPhrase([phrase, category, False])
+#         except Exception as ee:
+#             rejected.apppend((phrase, ee))
+#     return(rejected)
