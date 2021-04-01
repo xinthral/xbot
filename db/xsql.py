@@ -4,7 +4,7 @@ from os import getcwd
 class Database:
     """ Static Class Scope Variables """
     _delim = ';::;'
-    _library = 'library.db'
+    _library = 'db/library.db'
     _tables = ['jokes', 'phrases']
 
     def create_connection(db_file=_library):
@@ -81,7 +81,7 @@ class Database:
         """
         con = Database.create_connection()
         c = con.cursor()
-        c.execute(f'''SELECT * FROM {tbl_name} WHERE category=\'{cat}\';''')
+        c.execute(f"SELECT * FROM {tbl_name} WHERE category=\'{cat}\'")
         rows = c.fetchall()
         con.close()
         return(rows)

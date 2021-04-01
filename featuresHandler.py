@@ -7,7 +7,8 @@ ToDo:
 """
 from apiHandler import *
 from featuresExtended import *
-from sys import exit
+from sys import exit as sysexit
+from sys import exc_info
 from time import sleep
 
 class CommandHandler(object):
@@ -16,6 +17,7 @@ class CommandHandler(object):
         self.command = command
         self.obj = obj
         self.offlineMsg = "@{} -> The [{}] command is unavailable because it would appear that {} is offline.".format(self.obj.requestor, self.command[0], self.obj.channel_displayName)
+        print('channel_id: ' + self.obj.channel_id)
         self.apiStreams = api_streams({'user_login': self.obj.channel_id})
         self.selector(self.command[0].lower())
 
@@ -64,7 +66,7 @@ class CommandHandler(object):
             message = "Adios Senior..."
             self.obj.connection.privmsg(self.obj.channel, message)
             self.obj.disconnect(message)
-            exit(1)
+            sysexit(1)
 
         # ===== Regular Commands ===== #
         elif cmd == "build":
@@ -85,8 +87,9 @@ class CommandHandler(object):
                         self.apiStreams['data'][0]['title']
                     ))
                 except:
-                    self.obj.connection.privmsg(self.obj.channel, self.offlineMsg)
-
+                    etype, evalue, etrace = sys.exc_info()
+                    print(self.apiStreams)
+                    # self.obj.connection.privmsg(self.obj.channel, self.offlineMsg)
 
         # ===== Extended Features ===== #
         #elif cmd == "raffle":
