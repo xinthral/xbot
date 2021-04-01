@@ -1,23 +1,13 @@
-import sys
+from apiHandler import API
+from ircHandler import IRC
 from utils import cnf
-from xBot import NerdKommander
 
-def main():
-    if len(sys.argv) > 1:
-        channel = sys.argv[1]
-        print("Usage: ./launch.py <username> <client id> <channel>")
-        # sys.exit(1)
-    else:
-        channel = cnf('AUTH', 'CHANNEL_ID')
+class NerdKommander:
+    def __init__(self):
+        self.channels = [channel.strip() for channel in cnf('SERVER', 'CHANNELS').lower().split(',')]
+        print(self.channels)
+        self.irc = IRC(self.channels)
+        self.irc.run()
 
-    username  = cnf('AUTH', 'LONG_NAME')
-    client_id = cnf('AUTH', 'CLIENT_ID')
-
-    try:
-        bot = NerdKommander(username, client_id, channel)
-        bot.start()
-    except KeyboardInterrupt:
-        print("Shutting down...")
-
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    bot = NerdKommander()
