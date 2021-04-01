@@ -1,6 +1,7 @@
 # Non-Public
 settings.config
 *.txt
+discard/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/*
