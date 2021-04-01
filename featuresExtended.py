@@ -5,24 +5,33 @@ from os import getcwd
 from random import randint, seed
 from utils import cnf
 from time import time
-
-from dispatch.jokes_db import jokesDict
-from dispatch.phrases_db import phraseDict
+from db.xsql import Database as dbase
 
 """ Prologue """
 seed(int(time()))
 
 """ Globals """
-dadJokeList = jokesDict['dad'].copy()
-tabooJokeList = jokesDict['adult'].copy()
-gamingJokeList = jokesDict['gaming'].copy()
-nerdyJokeList = jokesDict['nerdy'].copy()
-positivQuoteList = phraseDict['positivity'].copy()
-inspirQuoteList = phraseDict['inspirational'].copy()
-streamQuoteList = phraseDict['stream'].copy()
-funnyQuoteList = phraseDict['funny'].copy()
-showerQuoteList = phraseDict['shower'].copy()
-nerdQuoteList = phraseDict['nerdy'].copy()
+# dadJokeList = jokesDict['dad'].copy()
+# adultJokeList = jokesDict['adult'].copy()
+# gamingJokeList = jokesDict['gaming'].copy()
+# nerdQuoteList = phraseDict['nerdy'].copy()
+# nerdyJokeList = jokesDict['nerdy'].copy()
+# positiveQuoteList = phraseDict['positivity'].copy()
+# inspirationalQuoteList = phraseDict['inspirational'].copy()
+# streamQuoteList = phraseDict['stream'].copy()
+# funnyQuoteList = phraseDict['funny'].copy()
+# showerQuoteList = phraseDict['shower'].copy()
+
+dadJokesList = dbase.queryTableCategory('jokes', 'dad')
+adultJokeList = dbase.queryTableCategory('jokes', 'adult')
+gamineJokeList = dbase.queryTableCategory('jokes', 'gaming')
+nerydJokeList = dbase.queryTableCategory('jokes', 'nerdy')
+positiveQuoteList = dbase.queryTableCategory('phrases', 'positivity')
+inspirationalQuoteList = dbase.queryTableCategory('phrases', 'inspirational')
+streamQuoteList = dbase.queryTableCategory('phrases', 'stream')
+funnyQuoteList = dbase.queryTableCategory('phrases', 'funny')
+showerQuoteList = dbase.queryTableCategory('phrases', 'shower')
+nerdQuoteList = dbase.queryTableCategory('phrases', 'nerdy')
 
 def haikuMe():
     wordList1 = ["Enchanting", "Amazing", "Colourful", "Delightful", "Delicate"]
@@ -54,27 +63,26 @@ audioFiles = {"naviListen": getcwd() + "\\sound_effects\\Navi_Listen.mp3",
 def jokes(jokeType = 'dad', index = -1):
     try:
         index = int(index)
-        global jokesDict
 
         if jokeType.lower() == "dad":
-            global dadJokeList
-            if len(dadJokeList) < 1:
-                dadJokeList = jokesDict['dad'][:]
+            global dadJokesList
+            if len(dadJokesList) < 1:
+                dadJokesList = dbase.queryTableCategory('jokes', 'dad')
             if index > -1:
                 jokeIndex = index
             else:
-                jokeIndex = randint(0, len(dadJokeList)-1)
-            response = dadJokeList.pop(jokeIndex)
+                jokeIndex = randint(0, len(dadJokesList)-1)
+            response = dadJokesList.pop(jokeIndex)
 
-        elif jokeType.lower() == "taboo":
-            global tabooJokeList
-            if len(tabooJokeList) < 1:
-                tabooJokeList = jokesDict['taboo'][:]
+        elif jokeType.lower() == "adult":
+            global adultJokeList
+            if len(adultJokeList) < 1:
+                adultJokeList = jokesDict['adult'][:]
             if index > -1:
                 jokeIndex = index
             else:
-                jokeIndex = randint(0, len(tabooJokeList)-1)
-            response = tabooJokeList.pop(jokeIndex)
+                jokeIndex = randint(0, len(adultJokeList)-1)
+            response = adultJokeList.pop(jokeIndex)
 
         elif jokeType.lower() == "gaming":
             global gamingJokeList
@@ -87,12 +95,12 @@ def jokes(jokeType = 'dad', index = -1):
             response = gamingJokeList.pop(jokeIndex)
         else:
             error = "Invalid Joke Type."
-            response = dadJokeList.pop(randint(0, len(dadJokeList)-1))
+            response = gamingJokeList.pop(randint(0, len(gamingJokeList)-1))
             response.insert(0, error)
     except:
         print(sys.exc_info())
         error = "Invalid Syntax. So here's a dad joke."
-        response = jokesDict['dad'][randint(0, len(jokesDict['dad'])-1)]
+        response = jokes()
         response.insert(0, error)
     return(response)
 
@@ -113,24 +121,24 @@ def playSound(meme):
 def quotes(phraseType = "positivity", index = -1):
     try:
         if phraseType.lower() == "positivity":
-            global positivQuoteList
-            if len(positivQuoteList) < 1:
-                positivQuoteList = phraseDict['positivity'][:]
+            global positiveQuoteList
+            if len(positiveQuoteList) < 1:
+                positiveQuoteList = phraseDict['positivity'][:]
             if index > -1:
                 quoteIndex = index
             else:
-                quoteIndex = randint(0, len(positivQuoteList)-1)
-            response = positivQuoteList.pop(quoteIndex)
+                quoteIndex = randint(0, len(positiveQuoteList)-1)
+            response = positiveQuoteList.pop(quoteIndex)
 
         elif phraseType.lower() == "inspirational":
-            global inspirQuoteList
-            if len(inspirQuoteList) < 1:
-                inspirQuoteList = phraseDict['inspirational'][:]
+            global inspirationalQuoteList
+            if len(inspirationalQuoteList) < 1:
+                inspirationalQuoteList = phraseDict['inspirational'][:]
             if index > -1:
                 quoteIndex = index
             else:
-                quoteIndex = randint(0, len(inspirQuoteList)-1)
-            response = inspirQuoteList.pop(quoteIndex)
+                quoteIndex = randint(0, len(inspirationalQuoteList)-1)
+            response = inspirationalQuoteList.pop(quoteIndex)
 
         elif phraseType.lower() == "shower":
             global showerQuoteList
