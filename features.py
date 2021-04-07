@@ -22,12 +22,12 @@ seed(int(time()))
 # funnyQuoteList = phraseDict['funny'].copy()
 # showerQuoteList = phraseDict['shower'].copy()
 
-jokesDict = dict()
+# jokesDict = dict()
 dadJokesList = dbase.queryTableCategory('jokes', 'dad')
 adultJokeList = dbase.queryTableCategory('jokes', 'adult')
 gamineJokeList = dbase.queryTableCategory('jokes', 'gaming')
 nerydJokeList = dbase.queryTableCategory('jokes', 'nerdy')
-phrasesDict = dict()
+# phrasesDict = dict()
 positiveQuoteList = dbase.queryTableCategory('phrases', 'positivity')
 inspirationalQuoteList = dbase.queryTableCategory('phrases', 'inspirational')
 streamQuoteList = dbase.queryTableCategory('phrases', 'stream')
@@ -162,7 +162,7 @@ def jokes(jokeType = 'dad', index = -1):
         elif jokeType.lower() == "adult":
             global adultJokeList
             if len(adultJokeList) < 1:
-                adultJokeList = jokesDict['adult'][:]
+                adultJokeList = dbase.queryTableCategory('jokes', 'adult')
             if index > -1:
                 jokeIndex = index
             else:
@@ -172,7 +172,7 @@ def jokes(jokeType = 'dad', index = -1):
         elif jokeType.lower() == "gaming":
             global gamingJokeList
             if len(gamingJokeList) < 1:
-                gamingJokeList = jokesDict['gaming'][:]
+                gamingJokeList = dbase.queryTableCategory('jokes', 'gaming')
             if index > -1:
                 jokeIndex = index
             else:
