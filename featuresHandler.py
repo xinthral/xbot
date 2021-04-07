@@ -1,203 +1,190 @@
-"""
-ToDo:
- - Achievement System
- - Point Accrual for viewers (from streamlabs)
- - List: First 100 hellos in chat
- - SQLite integration for jokes, etc...
-"""
-from apiHandler import *
-from featuresExtended import *
-from sys import exit as sysexit
-from sys import exc_info
-from time import sleep
+import requests, sys
 
-class CommandHandler(object):
-    def __init__(self, obj, command):
-        self.conn = obj.connection
-        self.command = command
-        self.obj = obj
-        self.offlineMsg = "@{} -> The [{}] command is unavailable because it would appear that {} is offline.".format(self.obj.requestor, self.command[0], self.obj.channel_displayName)
-        print('channel_id: ' + self.obj.channel_id)
-        self.apiStreams = api_streams({'user_login': self.obj.channel_id})
-        self.selector(self.command[0].lower())
+from bs4 import BeautifulSoup
+from os import getcwd
+from random import randint, seed
+from utils import cnf
+from time import time
+from db.xsql import Database as dbase
 
-    def selector(self, cmd):
-        """ Selects between Command Options """
-        # ===== Bot Commands ===== #
-        if cmd == "greet" and self.command > 1:
-            message = "Welcome {}, the regime welcomes you. Lurk, Chat, be merry!".format(self.command[1])
-            self.obj.connection.privmsg(self.obj.channel, message)
+""" Prologue """
+seed(int(time()))
 
-        elif cmd == "game":
-            try:
-                r2 = api_games({'id': self.apiStreams['data'][0]['game_id']})
+""" Globals """
+# dadJokeList = jokesDict['dad'].copy()
+# adultJokeList = jokesDict['adult'].copy()
+# gamingJokeList = jokesDict['gaming'].copy()
+# nerdQuoteList = phraseDict['nerdy'].copy()
+# nerdyJokeList = jokesDict['nerdy'].copy()
+# positiveQuoteList = phraseDict['positivity'].copy()
+# inspirationalQuoteList = phraseDict['inspirational'].copy()
+# streamQuoteList = phraseDict['stream'].copy()
+# funnyQuoteList = phraseDict['funny'].copy()
+# showerQuoteList = phraseDict['shower'].copy()
 
-                # HotFix: Natural Language
-                if r2['data'][0]['name'] == 'Creative':
-                    action = 'being'
-                else:
-                    action = 'playing'
+jokesDict = dict()
+dadJokesList = dbase.queryTableCategory('jokes', 'dad')
+adultJokeList = dbase.queryTableCategory('jokes', 'adult')
+gamineJokeList = dbase.queryTableCategory('jokes', 'gaming')
+nerydJokeList = dbase.queryTableCategory('jokes', 'nerdy')
+phrasesDict = dict()
+positiveQuoteList = dbase.queryTableCategory('phrases', 'positivity')
+inspirationalQuoteList = dbase.queryTableCategory('phrases', 'inspirational')
+streamQuoteList = dbase.queryTableCategory('phrases', 'stream')
+funnyQuoteList = dbase.queryTableCategory('phrases', 'funny')
+showerQuoteList = dbase.queryTableCategory('phrases', 'shower')
+nerdQuoteList = dbase.queryTableCategory('phrases', 'nerdy')
 
-                self.obj.connection.privmsg(self.obj.channel, "@{} -> {} is currently {} {}.".format(
-                    self.obj.requestor,
-                    self.obj.channel_displayName,
-                    action,
-                    activity
-                ))
-            except:
-                self.obj.connection.privmsg(self.obj.channel, self.offlineMsg)
+def haikuMe():
+    wordList1 = ["Enchanting", "Amazing", "Colourful", "Delightful", "Delicate"]
+    wordList2 = ["visions", "distance", "conscience", "process", "chaos"]
+    wordList3 = ["superstitious", "contrasting", "graceful", "inviting", "contradicting", "overwhelming"]
+    wordList4 = ["true", "dark", "cold", "warm", "great"]
+    wordList5 = ["scenery","season", "colours","lights","Spring","Winter","Summer","Autumn"]
+    wordList6 = ["undeniable", "beautiful", "irreplaceable", "unbelievable", "irrevocable"]
+    wordList7 = ["inspiration", "imagination", "wisdom", "thoughts"]
 
-        # Display current time live
-        elif cmd == "uptime":
-            try:
-                self.obj.connection.privmsg(self.obj.channel, self.apiStreams['data'][0]['started_at'])
-            except:
-                self.obj.connection.privmsg(self.obj.channel, self.offlineMsg)
+    wordIndex1=randint(0, len(wordList1)-1)
+    wordIndex2=randint(0, len(wordList2)-1)
+    wordIndex3=randint(0, len(wordList3)-1)
+    wordIndex4=randint(0, len(wordList4)-1)
+    wordIndex5=randint(0, len(wordList5)-1)
+    wordIndex6=randint(0, len(wordList6)-1)
+    wordIndex7=randint(0, len(wordList7)-1)
 
-        # Display follower list...of some kind?
-        elif cmd == "follows":
-            try:
-                self.obj.connection.privmsg(self.obj.channel, api_follows({'to_id': self.apiStreams['data'][0]['user_id']}))
-            except:
-                self.obj.connection.privmsg(self.obj.channel, self.offlineMsg)
+    haiku = wordList1[wordIndex1] + " " + wordList2[wordIndex2] + ",\n"
+    haiku = haiku + wordList3[wordIndex3] + " " + wordList4[wordIndex4] + " " + wordList5[wordIndex5]  + ",\n"
+    haiku = haiku + wordList6[wordIndex6] + " " + wordList7[wordIndex7] + "."
+    response = haiku.split('\n')
+    return(response)
 
-        # Command to remove bot from channel
-        elif cmd == "exitus" or cmd == "retire":
-            message = "Adios Senior..."
-            self.obj.connection.privmsg(self.obj.channel, message)
-            self.obj.disconnect(message)
-            sysexit(1)
+audioFiles = {"naviListen": getcwd() + "\\sound_effects\\Navi_Listen.mp3",
+              "smokeWeed": getcwd() + "\\sound_effects\\SmokeWeedEveryday.mp3"
+}
 
-        # ===== Regular Commands ===== #
-        elif cmd == "build":
-            buildtype, buildLink = "Minions", "https://www.pathofexile.com/forum/view-thread/2167692"
-            message = "Current {} build: {}".format(buildType, buildLink)
-            self.obj.connection.privmsg(self.obj.channel, message)
+def memePyramid(meme = 'PogChamp'):
+    #FIXME: Function needs work, doesn't work as intended.
+    response = []
+    size = len(meme)
+    for i in range(1, 4):
+        response.append((" " + meme + " ") * i)
+    print(response)
+    return(response)
 
-        elif cmd == "schedule":
-            message = "A schedule hasn't been established yet, " \
-                + "Xinthral's life is currently chaos."
-            self.obj.connection.privmsg(self.obj.channel, message)
+def playSound(meme):
+    import subprocess
+    subprocess.call([cnf("CLIENT", "VLC_PATH"), audioFiles[meme], '--play-and-exit'])
+    print("{} audio file was played.".format(meme))
 
-        elif cmd == "title":
-            if self.obj.requestor.lower() in self.obj.moderators:
-                try:
-                    self.obj.connection.privmsg(self.obj.channel, '@{} -> Stream Title: {}'.format(
-                        self.obj.requestor,
-                        self.apiStreams['data'][0]['title']
-                    ))
-                except:
-                    etype, evalue, etrace = sys.exc_info()
-                    print(self.apiStreams)
-                    # self.obj.connection.privmsg(self.obj.channel, self.offlineMsg)
+def randomFacts():
+    url = "http://randomfactgenerator.net/"
+    r = requests.get(url)
+    bs = BeautifulSoup(r.content, 'html.parser')
+    fact = bs.find(id="z").text.replace('\nTweet', '')
+    if '\n' in fact:
+        fact = fact.replace('\n', ' ')
+    return(str(fact))
 
-        # ===== Extended Features ===== #
-        #elif cmd == "raffle":
-        #elif cmd == "stalk":
-        #elif cmd == "trivia":
-        #elif cmd == "yeet":
-        elif cmd == "pyramid":
-            #FIXME: Has no error checking or failsafes
-            meme = "PogChamp"
-            if len(self.command) >= 2:
-                meme = self.command[1]
-            msg = memePyramid(meme)
-            for message in msg:
-                self.obj.connection.privmsg(self.obj.channel, message)
-                sleep(2)
-
-        elif cmd == "fact":
-            fact = randomFacts()
-            self.obj.connection.privmsg(self.obj.channel, fact)
-
-        elif cmd == "haiku":
-            msg = haikuMe()
-            for message in msg:
-                self.obj.connection.privmsg(self.obj.channel, message)
-                sleep(2)
-
-        elif cmd == "jokes" or cmd == "joke":
-            if len(self.command) >= 2:
-                if self.command[1].lower() in self.obj.allowedJokes:
-                    if len(self.command) > 3:
-                        responseList = jokes(self.command[1], self.command[2], self.command[3])
-                    elif len(self.command) > 2:
-                        responseList = jokes(self.command[1], self.command[2])
-                    else:
-                        responseList = jokes(self.command[1])
-                else:
-                    responseList = ["I don\'t have \"{}\" jokes available, but maybe one of these? {}".format(
-                        self.command[1],
-                        ', '.join(self.obj.allowedJokes)
-                    )]
+def quotes(phraseType = "positivity", index = -1):
+    try:
+        if phraseType.lower() == "positivity":
+            global positiveQuoteList
+            if len(positiveQuoteList) < 1:
+                positiveQuoteList = phraseDict['positivity'][:]
+            if index > -1:
+                quoteIndex = index
             else:
-                responseList = jokes()
-                # Optional Response
-                #responseList = ["What type of joke would you like? {}".format(', '.join(self.obj.allowedJokes))]
+                quoteIndex = randint(0, len(positiveQuoteList)-1)
+            response = positiveQuoteList.pop(quoteIndex)
 
-            for element in responseList:
-                self.obj.connection.privmsg(self.obj.channel, element)
-                sleep(4)
-
-        elif (cmd == "quote" or cmd == "phrase") and self.obj.requestor.lower() in self.obj.moderators:
-            if len(self.command) == 2:
-                responseList = quotes(self.command[1])
-            elif len(self.command) > 2:
-                responseList = quotes(self.command[1], self.command[2])
+        elif phraseType.lower() == "inspirational":
+            global inspirationalQuoteList
+            if len(inspirationalQuoteList) < 1:
+                inspirationalQuoteList = phraseDict['inspirational'][:]
+            if index > -1:
+                quoteIndex = index
             else:
-                responseList = quotes()
-            for element in responseList:
-                self.obj.connection.privmsg(self.obj.channel, element)
-                sleep(4)
+                quoteIndex = randint(0, len(inspirationalQuoteList)-1)
+            response = inspirationalQuoteList.pop(quoteIndex)
 
-        # ===== Subscriber Commands ===== #
-        #elif cmd == "name":
-        #elif cmd == "fubar":
-        elif cmd == "play": #playnavi
-            if len(self.command) > 1:
-                if self.command[1].lower() == "weed":
-                    playSound('smokeWeed')
-                    message = "Smoke Weed everyday."
-                elif self.command[1].lower() == "navi":
-                    playSound('naviListen')
-                    message = "Hey, Listen!"
-                sleep(7)
-                self.obj.connection.privmsg(self.obj.channel, message)
+        elif phraseType.lower() == "shower":
+            global showerQuoteList
+            if len(showerQuoteList) < 1:
+                showerQuoteList = phraseDict['shower'][:]
+            if index > -1:
+                quoteIndex = index
+            else:
+                quoteIndex = randint(0, len(showerQuoteList)-1)
+            response = showerQuoteList.pop(quoteIndex)
 
-        # ===== Moderator Commands ===== #
-        #elif cmd == "clip":
-        elif cmd == "poll":
-            message = "Polls!? Polls!? We didn't need no steenking polls!!"
-            self.obj.connection.privmsg(self.obj.channel, message)
+        elif phraseType.lower() == "stream":
+            global streamQuoteList
+            if len(streamQuoteList) < 1:
+                streamQuoteList = phraseDict['stream'][:]
+            if index > -1:
+                quoteIndex = index
+            else:
+                quoteIndex = randint(0, len(streamQuoteList)-1)
+            response = streamQuoteList.pop(quoteIndex)
 
-        elif cmd == "fight":
-            # message = "{} throws down against {}!".format(self.obj.requestor, self.command[1])
-            message = "{} attempts to throws down against {}, but the command is disabled!".format(self.obj.requestor, self.command[1])
-            self.obj.connection.privmsg(self.obj.channel, message)
+        elif phraseType.lower() == "nerd":
+            global nerdQuoteList
+            if len(nerdQuoteList) < 1:
+                nerdQuoteList = phraseDict['nerd'][:]
+            if index > -1:
+                quoteIndex = index
+            else:
+                quoteIndex = randint(0, len(nerdQuoteList)-1)
+            response = nerdQuoteList.pop(quoteIndex)
 
-        # ===== Developmental Section ===== #
-        elif cmd == "mods" and self.obj.requestor.lower() in self.obj.admins:
-            if len(self.command) < 2:
-                response = ', '.join(self.obj.moderators)
-                self.obj.connection.privmsg(self.obj.channel, "The Current Mods Online: " + response)
-
-            elif self.command[1].lower() == "add" and self.command[2] != None:
-                self.obj.moderators.append(self.command[2].lower())
-                self.obj.connection.privmsg(self.obj.channel, "@{} -> {} has been added to the mod list.".format(self.obj.requestor, self.command[2]))
-
-        #elif cmd == "test" and self.obj.requestor in self.obj.admins:
-            #response = "Test"
-            #self.obj.connection.privmsg(self.obj.channel, response)
-        elif (cmd == "help" or cmd == "commands") and self.obj.requestor.lower() in self.obj.moderators:
-            msg = "The following Commands are available: "
-            for each in self.obj.commandList:
-                if each == self.obj.commandList[-1]:
-                    msg += "{}".format(each)
-                elif each != "help":
-                    msg += "{}, ".format(each)
-            self.obj.connection.privmsg(self.obj.channel, msg)
-
-        # The command was not recognized
         else:
-            self.obj.connection.privmsg(self.obj.channel, "I'm sorry {}, I'm afraid I can't do that. [{}]".
-                     format(self.obj.requestor, cmd))
+            error = "Invalid Quote Type."
+            response = quotes()
+            response.insert(0, error)
+    except:
+        response = quotes()
+    return(response)
+
+def jokes(jokeType = 'dad', index = -1):
+    try:
+        index = int(index)
+
+        if jokeType.lower() == "dad":
+            global dadJokesList
+            if len(dadJokesList) < 1:
+                dadJokesList = dbase.queryTableCategory('jokes', 'dad')
+            if index > -1:
+                jokeIndex = index
+            else:
+                jokeIndex = randint(0, len(dadJokesList)-1)
+                response = dadJokesList.pop(jokeIndex)
+
+        elif jokeType.lower() == "adult":
+            global adultJokeList
+            if len(adultJokeList) < 1:
+                adultJokeList = jokesDict['adult'][:]
+            if index > -1:
+                jokeIndex = index
+            else:
+                jokeIndex = randint(0, len(adultJokeList)-1)
+                response = adultJokeList.pop(jokeIndex)
+
+        elif jokeType.lower() == "gaming":
+            global gamingJokeList
+            if len(gamingJokeList) < 1:
+                gamingJokeList = jokesDict['gaming'][:]
+            if index > -1:
+                jokeIndex = index
+            else:
+                jokeIndex = randint(0, len(gamingJokeList)-1)
+                response = gamingJokeList.pop(jokeIndex)
+        else:
+            error = "Invalid Joke Type."
+            response = gamingJokeList.pop(randint(0, len(gamingJokeList)-1))
+            response.insert(0, error)
+    except:
+        print(sys.exc_info())
+        error = "Invalid Syntax. So here's a dad joke."
+        response = jokes()
+        response.insert(0, error)
+    return(response)
