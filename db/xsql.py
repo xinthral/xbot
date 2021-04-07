@@ -47,7 +47,7 @@ class Database:
         con = Database.create_connection()
         c = con.cursor()
         elements = (Database.getTableCount(tbl_name), *payload, )
-        print(elements)
+        # print(elements)
         c.execute(f'''INSERT INTO {tbl_name} {columns} VALUES {elements}''')
         con.commit()
         con.close()
@@ -89,6 +89,7 @@ class Database:
         rows = c.fetchall()
         con.close()
         return(rows)
+
 
 # DEFUNC
 # """ HELPER FUNCTIONS """

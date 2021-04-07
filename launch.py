@@ -5,7 +5,7 @@ from utils import cnf
 class NerdKommander:
     def __init__(self):
         self.channels = [channel.strip() for channel in cnf('SERVER', 'CHANNELS').lower().split(',')]
-        print(self.channels)
+        # print(self.channels)
         self.irc = IRC(self.channels)
         self.irc.run()
 

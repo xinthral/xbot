@@ -25,7 +25,7 @@ seed(int(time()))
 # jokesDict = dict()
 dadJokesList = dbase.queryTableCategory('jokes', 'dad')
 adultJokeList = dbase.queryTableCategory('jokes', 'adult')
-gamineJokeList = dbase.queryTableCategory('jokes', 'gaming')
+gamingJokeList = dbase.queryTableCategory('jokes', 'gaming')
 nerydJokeList = dbase.queryTableCategory('jokes', 'nerdy')
 # phrasesDict = dict()
 positiveQuoteList = dbase.queryTableCategory('phrases', 'positivity')
@@ -140,15 +140,16 @@ def quotes(phraseType = "positivity", index = -1):
         else:
             error = "Invalid Quote Type."
             response = quotes()
-            response.insert(0, error)
+            # response.insert(0, error)
     except:
         response = quotes()
     return(response)
 
 def jokes(jokeType = 'dad', index = -1):
+    response = tuple()
     try:
         index = int(index)
-
+        # print('Index: ', index)
         if jokeType.lower() == "dad":
             global dadJokesList
             if len(dadJokesList) < 1:
@@ -157,7 +158,7 @@ def jokes(jokeType = 'dad', index = -1):
                 jokeIndex = index
             else:
                 jokeIndex = randint(0, len(dadJokesList)-1)
-                response = dadJokesList.pop(jokeIndex)
+            response = dadJokesList.pop(jokeIndex)
 
         elif jokeType.lower() == "adult":
             global adultJokeList
@@ -167,7 +168,7 @@ def jokes(jokeType = 'dad', index = -1):
                 jokeIndex = index
             else:
                 jokeIndex = randint(0, len(adultJokeList)-1)
-                response = adultJokeList.pop(jokeIndex)
+            response = adultJokeList.pop(jokeIndex)
 
         elif jokeType.lower() == "gaming":
             global gamingJokeList
@@ -177,14 +178,15 @@ def jokes(jokeType = 'dad', index = -1):
                 jokeIndex = index
             else:
                 jokeIndex = randint(0, len(gamingJokeList)-1)
-                response = gamingJokeList.pop(jokeIndex)
+            response = gamingJokeList.pop(jokeIndex)
         else:
             error = "Invalid Joke Type."
             response = gamingJokeList.pop(randint(0, len(gamingJokeList)-1))
-            response.insert(0, error)
+            response = (-1, error, 'Error')
     except:
         print(sys.exc_info())
         error = "Invalid Syntax. So here's a dad joke."
-        response = jokes()
-        response.insert(0, error)
+        response = jokes('dad')
+        
+    print(f'Joke Response: {response}')
     return(response)

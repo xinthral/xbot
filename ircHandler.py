@@ -2,14 +2,13 @@ import socket
 import ssl
 import sys
 import threading
-from featuresExtended import jokes
 from msgHandler import Message
 from time import sleep
 from utils import cnf
 
 class IRC(threading.Thread):
-    __delim = ';::;'
-    def __init__(self, channels=[]):
+    __delim = cnf('ADMIN', 'DELIM')
+    def __init__(self, channels=list()):
         super().__init__()
         # self.__bot_id = cnf('AUTH', 'BOT_ID')
         # self.__bot_secret = cnf('AUTH', 'BOT_SECRET')
@@ -17,16 +16,17 @@ class IRC(threading.Thread):
         self.__nic = cnf('AUTH', 'NICK').lower()
         self.irc = None
         self.channels = channels
-        self.__channels = []
+        self.__channels = set()
 
     def add_channel(self, channel):
-        if channel in self.__channels:
-            return
-        self.__channels.append(channel)
+        self.__channels.add(channel)
 
     def authenticate(self):
         self.send_command('PASS', f"oauth:{self.__bot_oauth}")
         self.send_command('NICK', self.__nic)
+
+    def current_channels(self):
+        return(self.__channels)
 
     def connect(self):
         server = 'irc.chat.twitch.tv'
@@ -41,8 +41,7 @@ class IRC(threading.Thread):
         idleTimeout = 0
         while (cycle and idleTimeout < 60):
             try:
-                received_msgs=self.irc.recv(2048).decode()
-
+                received_msgs = self.irc.recv(1024).decode('utf-8')
                 for received_msg in received_msgs.split("\r\n"):
                     if len(received_msg) > 1:
                         self.parse_message(received_msg)
@@ -56,7 +55,7 @@ class IRC(threading.Thread):
                 print(f"IRC Socket Error: {socket.gaierror}")
                 cycle = False
             except Exception as e:
-                print(f"IRC Exception Error: {sys.exc_info()[0]}")
+                print(f"IRC Exception Error: {sys.exc_info()[1]}")
                 # cycle = False
             except KeyboardInterrupt:
                 cycle = False
@@ -64,7 +63,7 @@ class IRC(threading.Thread):
     def join_channel(self, channel):
         if channel in self.__channels:
             return
-        self.__channels.append(channel)
+        self.__channels.add(channel)
         print(f"Joining {channel}...")
         self.send_command('CAP', 'REQ :twitch.tv/membership')
         self.send_command('CAP', 'REQ :twitch.tv/tags')
@@ -75,23 +74,24 @@ class IRC(threading.Thread):
     def join_channels(self, channels=[]):
         for channel in channels:
             self.join_channel(channel)
-            self.send_private(channel, 'Salue senior')
+            # self.send_private(channel, 'Salue senior')
 
     def parse_message(self, message=None):
         from pprint import pprint as pp
         if message != None:
-            print(f"Message: _'{message}'_")
+            print(f"> {message}")
             obj = Message.parse_message(message)
-            if ('commands' in obj.keys()):
-                # if 'joke' in obj['commands'][0].lower():
-                jokeList = jokes()[1].split(IRC.__delim)
-                for ele in jokeList:
-                    self.send_private(obj['channel'], ele)
-                    sleep(2)
-                # self.send_private(obj['channel'], obj['commands'])
+            if len(obj.keys()) > 0 and 'response' in obj.keys():
+                pp(obj)
+                for row in obj['response']:
+                    for resp in row:
+                        self.send_private(obj['channel'], resp)
+                        sleep(2)
+            # obj['category'] = 'USERSTATE'
+            # return(obj)
 
     def part_channel(self, channel):
-        self.__channels.remove(channel)
+        self.__channels.discard(channel)
         self.send_command('PART', f"#{channel}")
 
     def part_channels(self, channels=[]):
@@ -102,8 +102,18 @@ class IRC(threading.Thread):
         self.send_command('PRIVMSG', f"#{channel} :{text}")
 
     def send_command(self, command, text):
-        # if command.lower() == 'joke':
         self.send(f"{command} {text}")
+
+    def reconnect(self, accept=True):
+        if accept:
+            print('Warning: Connection Required, connecting now...')
+            self.connect()
+        else:
+            # RAISE EXCEPTION
+            print('Error: Connection failed.')
+
+    def remove_channel(self, channel):
+        pass
 
     def run(self):
         self.connect()
@@ -112,7 +122,7 @@ class IRC(threading.Thread):
         self.__loop()
         self.tear_down()
 
-    def send(self, output, accept=True):
+    def send(self, output):
 
         if output[:4] != 'PASS':
             print(f"< {output}")
@@ -120,15 +130,11 @@ class IRC(threading.Thread):
         if self.irc != None:
             self.irc.send(f"{output}\r\n".encode())
         else:
-            if accept:
-                print('Warning: Connection Required, connecting now...')
-                self.connect()
-                self.send(output, False)
-            else:
-                print('Error: Connection failed.')
-                pass
+            self.reconnect()
+            self.send(output)
 
     def tear_down(self):
         print("Shutting Down...")
-        print(exit)
-        exit()
+        # print(exit)
+        self.irc.close()
+        # exit()
