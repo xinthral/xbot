@@ -77,34 +77,38 @@ class IRC(threading.Thread):
             # self.send_private(channel, 'Salue senior')
 
     def parse_message(self, message=None):
-        from pprint import pprint as pp
+        """ Parse incoming messages into data object """
+        # from pprint import pprint as pp
         if message != None:
             print(f"> {message}")
             obj = Message.parse_message(message)
             if len(obj.keys()) > 0 and 'response' in obj.keys():
-                pp(obj)
+                # pp(obj)
                 for row in obj['response']:
                     for resp in row:
                         self.send_private(obj['channel'], resp)
                         sleep(2)
-            # obj['category'] = 'USERSTATE'
-            # return(obj)
 
     def part_channel(self, channel):
+        """ Remove channel from listening events """
         self.__channels.discard(channel)
         self.send_command('PART', f"#{channel}")
 
     def part_channels(self, channels=[]):
+        """ Remove multiple channels from listening events """
         for channel in channels:
             self.part_channel(channel)
 
     def send_private(self, channel, text):
+        """ Send socket message to specific channel """
         self.send_command('PRIVMSG', f"#{channel} :{text}")
 
     def send_command(self, command, text):
+        """ Send socket message to with prefix irc commands """
         self.send(f"{command} {text}")
 
     def reconnect(self, accept=True):
+        """ Reinstantiate the socket connection """
         if accept:
             print('Warning: Connection Required, connecting now...')
             self.connect()
