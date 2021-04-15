@@ -59,6 +59,6 @@ def testUser(name='McTester'):
     rank, armor, damage, health, mana = 'Tester', 5, 1, 10, 10
     return(Combatant(rank, name, armor, damage, health, mana))
 
-if __name__ == "__main__":
-    kodo = testUser('Kodo')
-    podo = testUser('Podo')
+# if __name__ == "__main__":
+#     kodo = testUser('Kodo')
+#     podo = testUser('Podo')
