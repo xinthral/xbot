@@ -5,14 +5,14 @@ class Database:
     """ Static Class Scope Variables """
     _delim = ';::;'
     _library = 'db/library.db'
-    _tables = ['jokes', 'phrases']
+    _tables = ['facts', 'jokes', 'phrases', 'wur']
 
     def create_connection(db_file=_library):
         """ Establish Connection to database object and return connection object """
         conn = None
         try:
             conn = sqlite3.connect(db_file)
-        except Error as e:
+        except Exception as e:
             raise(e)
         return(conn)
 
@@ -25,18 +25,9 @@ class Database:
         con.close()
         return(rows)
 
-    def getTableSchema(tbl_name=_tables[0]):
-        """ Query Schema for specific table in database object """
-        con = Database.create_connection()
-        c = con.cursor()
-        c.execute(f"PRAGMA table_info({tbl_name})")
-        rows = c.fetchall()
-        con.close()
-        return(rows)
-
     def getTableHeaders(tbl_name=_tables[0]):
         """ Query Headers for specific table in database object """
-        return([ele[1] for ele in Database.getTableSchema(tbl_name)])
+        return([ele[1] for ele in Database.showTableSchema(tbl_name)])
 
     def insert(payload, tbl_name=_tables[0], delim=_delim):
         if len(payload[0].split(delim)) < 1:
@@ -53,19 +44,40 @@ class Database:
         con.close()
         return(True)
 
+    def insertFact(payload):
+        """ Inserts fact payload into database object (wrapper) """
+        #payload: ['input text', 'category', blocked: 0/1]
+        return(Database.insert(payload, 'facts'))
+
     def insertJoke(payload):
-        """ Inserts phrase payload into database object (wrapper) """
+        """ Inserts joke payload into database object (wrapper) """
+        #payload: ['input text', 'category', blocked: 0/1]
         return(Database.insert(payload, 'jokes'))
 
     def insertPhrase(payload):
         """ Inserts phrase payload into database object (wrapper) """
+        #payload: ['input text', 'category', blocked: 0/1]
         return(Database.insert(payload, 'phrases'))
+
+    def insertRather(payload):
+        """ Inserts would you rather payload into database object (wrapper) """
+        #payload: ['input text', 'category', blocked: 0/1]
+        return(Database.insert(payload, 'wur'))
 
     def showTables():
         """ Query table names from database object """
         con = Database.create_connection()
         c = con.cursor()
         c.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        rows = c.fetchall()
+        con.close()
+        return(rows)
+
+    def showTableSchema(tbl_name=_tables[0]):
+        """ Query Schema for specific table in database object """
+        con = Database.create_connection()
+        c = con.cursor()
+        c.execute(f"PRAGMA table_info({tbl_name})")
         rows = c.fetchall()
         con.close()
         return(rows)
@@ -89,32 +101,3 @@ class Database:
         rows = c.fetchall()
         con.close()
         return(rows)
-
-
-# DEFUNC
-# """ HELPER FUNCTIONS """
-# def convertJokesDict(category='dad'):
-#     """ Converts the jokes dictionary into formmated joke for database object """
-#     from jokes_db import jokesDict as jlist
-#     rejected = []
-#     db = Database
-#     for joke in jlist[category]:
-#         try:
-#             joke = ';::;'.join(joke)
-#             db.insertJoke([joke, category, False])
-#         except Exception as ee:
-#             rejected.append((joke, ee))
-#     return(rejected)
-#
-# def convertPhraseDict(category='positivity'):
-#     """ Converts the phrases dictionary into formmated phrase for database object """
-#     from phrases_db import phraseDict as plist
-#     rejected = []
-#     db = Database
-#     for phrase in plist[category]:
-#         try:
-#             phrase = ';::;'.join(phrase)
-#             db.insertPhrase([phrase, category, False])
-#         except Exception as ee:
-#             rejected.apppend((phrase, ee))
-#     return(rejected)
