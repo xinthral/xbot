@@ -1,5 +1,5 @@
 from db.xsql import Database
-from commands.features import jokes
+from commands.features import jokes, quotes
 from utils import cnf
 
 class Command:
@@ -21,7 +21,6 @@ class Command:
     def response(self, commandline):
         response = list()
         cmdline = commandline.split()
-        print(f'Command List to Parse: {cmdline}')
         cmd = cmdline[0].lower()
         if cmd not in Command._authorized_commands:
             response = ['Invalid Command']
@@ -41,7 +40,7 @@ class Command:
             response = jokes(commandline[1])
         else:
             response = jokes('dad')
-        print(f'Joke Parse Resp: {response}')
+        # print(f'Joke Parse Resp: {response}')
         return(response[1])
 
     def phrase_parse(self, commandline):
@@ -50,5 +49,5 @@ class Command:
             response = quotes(commandline[1])
         else:
             response = quotes('positivity')
-        print(f'Quote Parse Resp: {response}')
+        # print(f'Quote Parse Resp: {response}')
         return(response[1])
