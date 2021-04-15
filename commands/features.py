@@ -11,17 +11,6 @@ from db.xsql import Database as dbase
 seed(int(time()))
 
 """ Globals """
-# dadJokeList = jokesDict['dad'].copy()
-# adultJokeList = jokesDict['adult'].copy()
-# gamingJokeList = jokesDict['gaming'].copy()
-# nerdQuoteList = phraseDict['nerdy'].copy()
-# nerdyJokeList = jokesDict['nerdy'].copy()
-# positiveQuoteList = phraseDict['positivity'].copy()
-# inspirationalQuoteList = phraseDict['inspirational'].copy()
-# streamQuoteList = phraseDict['stream'].copy()
-# funnyQuoteList = phraseDict['funny'].copy()
-# showerQuoteList = phraseDict['shower'].copy()
-
 # jokesDict = dict()
 dadJokesList = dbase.queryTableCategory('jokes', 'dad')
 adultJokeList = dbase.queryTableCategory('jokes', 'adult')
@@ -187,6 +176,6 @@ def jokes(jokeType = 'dad', index = -1):
         print(sys.exc_info())
         error = "Invalid Syntax. So here's a dad joke."
         response = jokes('dad')
-        
+
     print(f'Joke Response: {response}')
     return(response)
