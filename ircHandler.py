@@ -112,10 +112,8 @@ class IRC(threading.Thread):
             # RAISE EXCEPTION
             print('Error: Connection failed.')
 
-    def remove_channel(self, channel):
-        pass
-
     def run(self):
+        """ Sets bot thread running """
         self.connect()
         self.authenticate()
         self.join_channels(self.channels)
@@ -123,10 +121,12 @@ class IRC(threading.Thread):
         self.tear_down()
 
     def send(self, output):
-
+        """ Send message through socket """
+        # Exclusion to avoid outputting tokens to logs
         if output[:4] != 'PASS':
             print(f"< {output}")
 
+        # If socket isn't empty, send message or reconnect
         if self.irc != None:
             self.irc.send(f"{output}\r\n".encode())
         else:
@@ -134,7 +134,7 @@ class IRC(threading.Thread):
             self.send(output)
 
     def tear_down(self):
+        """ Initiate Teardown Sequence """
         print("Shutting Down...")
-        # print(exit)
         self.irc.close()
         # exit()
