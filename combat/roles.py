@@ -1,6 +1,5 @@
-class Player(object):
+class Combatant(object):
     def __init__(self, title="Recruit", name="Unnamed", armor=0, damage=1, health=1, mana=0):
-
         # Current Stats
         self.armor = armor
         self.damage = damage
@@ -58,8 +57,8 @@ class SuperHero(Player):
 
 def testUser(name='McTester'):
     rank, armor, damage, health, mana = 'Tester', 5, 1, 10, 10
-    return(Player(rank, name, armor, damage, health, mana))
+    return(Combatant(rank, name, armor, damage, health, mana))
 
-if __name__ == "__main__":
-    kodo = testUser('Kodo')
-    podo = testUser('Podo')
+# if __name__ == "__main__":
+#     kodo = testUser('Kodo')
+#     podo = testUser('Podo')

@@ -59,29 +59,29 @@ class Fight(object):
             self.p1 = self.p2
             self.p2 = tmpUsr
 
-if __name__ == "__main__":
-    from user import Player
-
-    usr1 = Player("Tester", "Kodo", 0, 1, 5, 0)
-    usr2 = Player("Tester", "Podo", 0, 1, 5, 0)
-
-    def testFightObj():
-        fightObj = Fight(usr1, usr2, -1)
-        return(fightObj)
-
-    def itrFightObj():
-        count = 0
-        for _ in range(1, 101):
-            if testFightObj().ambush():
-                count += 1
-        return(count)
-
-    # Shows a list of probabilities of ambush by %
-    def ambushProb():
-        ambsh = [ itrFightObj() for _ in range(0, 30) ]
-        ambsh.sort()
-        print("Success %:\n[{} -> {}]".format(ambsh[0], ambsh[-1]))
-        #return(ambsh)
-
-    ambushProb()
-    input("Press ENTER to continue...")
+# if __name__ == "__main__":
+    # from roles import Combatant
+    #
+    # usr1 = Player("Tester", "Kodo", 0, 1, 5, 0)
+    # usr2 = Player("Tester", "Podo", 0, 1, 5, 0)
+    #
+    # def testFightObj():
+    #     fightObj = Fight(usr1, usr2, -1)
+    #     return(fightObj)
+    #
+    # def itrFightObj():
+    #     count = 0
+    #     for _ in range(1, 101):
+    #         if testFightObj().ambush():
+    #             count += 1
+    #     return(count)
+    #
+    # # Shows a list of probabilities of ambush by %
+    # def ambushProb():
+    #     ambsh = [ itrFightObj() for _ in range(0, 30) ]
+    #     ambsh.sort()
+    #     print("Success %:\n[{} -> {}]".format(ambsh[0], ambsh[-1]))
+    #     #return(ambsh)
+    #
+    # ambushProb()
+    # input("Press ENTER to continue...")
