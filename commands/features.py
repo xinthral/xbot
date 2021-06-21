@@ -5,24 +5,31 @@ from os import getcwd
 from random import randint, seed
 from utils import cnf
 from time import time
-from db.xsql import Database as dbase
+# from db.xsql import Database as dbase
+from db.xsql import Database
+
 
 """ Prologue """
 seed(int(time()))
 
 """ Globals """
-# jokesDict = dict()
-dadJokesList = dbase.queryTableCategory('jokes', 'dad')
-adultJokeList = dbase.queryTableCategory('jokes', 'adult')
-gamingJokeList = dbase.queryTableCategory('jokes', 'gaming')
-nerydJokeList = dbase.queryTableCategory('jokes', 'nerdy')
-# phrasesDict = dict()
-positiveQuoteList = dbase.queryTableCategory('phrases', 'positivity')
-inspirationalQuoteList = dbase.queryTableCategory('phrases', 'inspirational')
-streamQuoteList = dbase.queryTableCategory('phrases', 'stream')
-funnyQuoteList = dbase.queryTableCategory('phrases', 'funny')
-showerQuoteList = dbase.queryTableCategory('phrases', 'shower')
-nerdQuoteList = dbase.queryTableCategory('phrases', 'nerdy')
+# TOC = set()
+# FACTS = dbase.queryTableAll('facts')
+# FORTUNES = dbase.queryTableAll('fortunes')
+# JOKES = dbase.queryTableAll('jokes')
+# QUOTES = dbase.queryTableAll('quotes')
+# RATHERS = dbase.queryTableAll('rathers')
+
+# dadJokesList = dbase.queryTableCategory('jokes', 'dad')
+# adultJokeList = dbase.queryTableCategory('jokes', 'adult')
+# gamingJokeList = dbase.queryTableCategory('jokes', 'gaming')
+# nerydJokeList = dbase.queryTableCategory('jokes', 'nerdy')
+# positiveQuoteList = dbase.queryTableCategory('phrases', 'positivity')
+# inspirationalQuoteList = dbase.queryTableCategory('phrases', 'inspirational')
+# streamQuoteList = dbase.queryTableCategory('phrases', 'stream')
+# funnyQuoteList = dbase.queryTableCategory('phrases', 'funny')
+# showerQuoteList = dbase.queryTableCategory('phrases', 'shower')
+# nerdQuoteList = dbase.queryTableCategory('phrases', 'nerdy')
 
 def haikuMe():
     wordList1 = ["Enchanting", "Amazing", "Colourful", "Delightful", "Delicate"]
@@ -65,7 +72,7 @@ def playSound(meme):
     subprocess.call([cnf("CLIENT", "VLC_PATH"), audioFiles[meme], '--play-and-exit'])
     print("{} audio file was played.".format(meme))
 
-def randomFacts():
+def facts():
     url = "http://randomfactgenerator.net/"
     r = requests.get(url)
     bs = BeautifulSoup(r.content, 'html.parser')
@@ -74,108 +81,140 @@ def randomFacts():
         fact = fact.replace('\n', ' ')
     return(str(fact))
 
-def quotes(phraseType = "positivity", index = -1):
-    try:
-        if phraseType.lower() == "positivity":
-            global positiveQuoteList
-            if len(positiveQuoteList) < 1:
-                positiveQuoteList = phraseDict['positivity'][:]
-            if index > -1:
-                quoteIndex = index
-            else:
-                quoteIndex = randint(0, len(positiveQuoteList)-1)
-            response = positiveQuoteList.pop(quoteIndex)
+# def quotes(phraseType = "positivity", index = -1):
+#     try:
+#         if phraseType.lower() == "positivity":
+#             global positiveQuoteList
+#             if len(positiveQuoteList) < 1:
+#                 positiveQuoteList = phraseDict['positivity'][:]
+#             if index > -1:
+#                 quoteIndex = index
+#             else:
+#                 quoteIndex = randint(0, len(positiveQuoteList)-1)
+#             response = positiveQuoteList.pop(quoteIndex)
+#
+#         elif phraseType.lower() == "inspirational":
+#             global inspirationalQuoteList
+#             if len(inspirationalQuoteList) < 1:
+#                 inspirationalQuoteList = phraseDict['inspirational'][:]
+#             if index > -1:
+#                 quoteIndex = index
+#             else:
+#                 quoteIndex = randint(0, len(inspirationalQuoteList)-1)
+#             response = inspirationalQuoteList.pop(quoteIndex)
+#
+#         elif phraseType.lower() == "shower":
+#             global showerQuoteList
+#             if len(showerQuoteList) < 1:
+#                 showerQuoteList = phraseDict['shower'][:]
+#             if index > -1:
+#                 quoteIndex = index
+#             else:
+#                 quoteIndex = randint(0, len(showerQuoteList)-1)
+#             response = showerQuoteList.pop(quoteIndex)
+#
+#         elif phraseType.lower() == "stream":
+#             global streamQuoteList
+#             if len(streamQuoteList) < 1:
+#                 streamQuoteList = phraseDict['stream'][:]
+#             if index > -1:
+#                 quoteIndex = index
+#             else:
+#                 quoteIndex = randint(0, len(streamQuoteList)-1)
+#             response = streamQuoteList.pop(quoteIndex)
+#
+#         elif phraseType.lower() == "nerd":
+#             global nerdQuoteList
+#             if len(nerdQuoteList) < 1:
+#                 nerdQuoteList = phraseDict['nerd'][:]
+#             if index > -1:
+#                 quoteIndex = index
+#             else:
+#                 quoteIndex = randint(0, len(nerdQuoteList)-1)
+#             response = nerdQuoteList.pop(quoteIndex)
+#
+#         else:
+#             error = "Invalid Quote Type."
+#             response = quotes()
+#             # response.insert(0, error)
+#     except:
+#         response = quotes()
+#     return(response)
+#
+# def jokes(jokeType = 'dad', index = -1):
+#     response = tuple()
+#     try:
+#         index = int(index)
+#         if jokeType.lower() == "dad":
+#             global dadJokesList
+#             if len(dadJokesList) < 1:
+#                 dadJokesList = dbase.queryTableCategory('jokes', 'dad')
+#             if index > -1:
+#                 jokeIndex = index
+#             else:
+#                 jokeIndex = randint(0, len(dadJokesList)-1)
+#             response = dadJokesList.pop(jokeIndex)
+#
+#         elif jokeType.lower() == "adult":
+#             global adultJokeList
+#             if len(adultJokeList) < 1:
+#                 adultJokeList = dbase.queryTableCategory('jokes', 'adult')
+#             if index > -1:
+#                 jokeIndex = index
+#             else:
+#                 jokeIndex = randint(0, len(adultJokeList)-1)
+#             response = adultJokeList.pop(jokeIndex)
+#
+#         elif jokeType.lower() == "gaming":
+#             global gamingJokeList
+#             if len(gamingJokeList) < 1:
+#                 gamingJokeList = dbase.queryTableCategory('jokes', 'gaming')
+#             if index > -1:
+#                 jokeIndex = index
+#             else:
+#                 jokeIndex = randint(0, len(gamingJokeList)-1)
+#             response = gamingJokeList.pop(jokeIndex)
+#         else:
+#             error = "Invalid Joke Type."
+#             response = gamingJokeList.pop(randint(0, len(gamingJokeList)-1))
+#             response = (-1, error, 'Error')
+#     except:
+#         print(sys.exc_info())
+#         error = "Invalid Syntax. So here's a dad joke."
+#         response = jokes('dad')
+#
+#     print(f'Joke Response: {response}')
+#     return(response)
 
-        elif phraseType.lower() == "inspirational":
-            global inspirationalQuoteList
-            if len(inspirationalQuoteList) < 1:
-                inspirationalQuoteList = phraseDict['inspirational'][:]
-            if index > -1:
-                quoteIndex = index
-            else:
-                quoteIndex = randint(0, len(inspirationalQuoteList)-1)
-            response = inspirationalQuoteList.pop(quoteIndex)
+class Skits():
+    def __init__(self):
+        self._toc = dict()
+        self.setup()
 
-        elif phraseType.lower() == "shower":
-            global showerQuoteList
-            if len(showerQuoteList) < 1:
-                showerQuoteList = phraseDict['shower'][:]
-            if index > -1:
-                quoteIndex = index
-            else:
-                quoteIndex = randint(0, len(showerQuoteList)-1)
-            response = showerQuoteList.pop(quoteIndex)
+    def setup(self):
+        """ Setup Skit object """
+        for table in Database._tables:
+            self._toc[table] = Database.queryTableAll(table)
 
-        elif phraseType.lower() == "stream":
-            global streamQuoteList
-            if len(streamQuoteList) < 1:
-                streamQuoteList = phraseDict['stream'][:]
-            if index > -1:
-                quoteIndex = index
-            else:
-                quoteIndex = randint(0, len(streamQuoteList)-1)
-            response = streamQuoteList.pop(quoteIndex)
+    def get_item(self, command):
+        repo = self.get_repo(command)
+        indx = randint(0, len(repo)-1)
+        itm = repo[indx][1]
+        print(itm)
+        return(itm)
 
-        elif phraseType.lower() == "nerd":
-            global nerdQuoteList
-            if len(nerdQuoteList) < 1:
-                nerdQuoteList = phraseDict['nerd'][:]
-            if index > -1:
-                quoteIndex = index
-            else:
-                quoteIndex = randint(0, len(nerdQuoteList)-1)
-            response = nerdQuoteList.pop(quoteIndex)
+    def get_repo(self, command):
+        response = str()
+        if command.lower() in self._toc.keys():
+            response = self._toc[command]
+            self.validate_repo(response)
+        return(response)
 
-        else:
-            error = "Invalid Quote Type."
-            response = quotes()
-            # response.insert(0, error)
-    except:
-        response = quotes()
-    return(response)
+    def validate_repo(self, command, repo):
+        if len(repo) < 2:
+            self._toc[command] = Database.queryTableAll(command)
 
-def jokes(jokeType = 'dad', index = -1):
-    response = tuple()
-    try:
-        index = int(index)
-        # print('Index: ', index)
-        if jokeType.lower() == "dad":
-            global dadJokesList
-            if len(dadJokesList) < 1:
-                dadJokesList = dbase.queryTableCategory('jokes', 'dad')
-            if index > -1:
-                jokeIndex = index
-            else:
-                jokeIndex = randint(0, len(dadJokesList)-1)
-            response = dadJokesList.pop(jokeIndex)
-
-        elif jokeType.lower() == "adult":
-            global adultJokeList
-            if len(adultJokeList) < 1:
-                adultJokeList = dbase.queryTableCategory('jokes', 'adult')
-            if index > -1:
-                jokeIndex = index
-            else:
-                jokeIndex = randint(0, len(adultJokeList)-1)
-            response = adultJokeList.pop(jokeIndex)
-
-        elif jokeType.lower() == "gaming":
-            global gamingJokeList
-            if len(gamingJokeList) < 1:
-                gamingJokeList = dbase.queryTableCategory('jokes', 'gaming')
-            if index > -1:
-                jokeIndex = index
-            else:
-                jokeIndex = randint(0, len(gamingJokeList)-1)
-            response = gamingJokeList.pop(jokeIndex)
-        else:
-            error = "Invalid Joke Type."
-            response = gamingJokeList.pop(randint(0, len(gamingJokeList)-1))
-            response = (-1, error, 'Error')
-    except:
-        print(sys.exc_info())
-        error = "Invalid Syntax. So here's a dad joke."
-        response = jokes('dad')
-
-    print(f'Joke Response: {response}')
-    return(response)
+    def get_response(self, command):
+        response = self.get_item(command)
+        print(f"Skit Response: {response}")
+        return(response)

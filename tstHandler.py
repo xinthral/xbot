@@ -16,7 +16,7 @@ class TestIRCMethods(unittest.TestCase):
 
     def test_join_channel(self):
         self._chatObj.join_channel('nerd_kommander')
-        self.assertTrue(len(self._chatObj.current_channels()) > 1)
+        self.assertTrue(len(self._chatObj.current_channels()) == 1)
 
     def test_parse_message_userstate(self):
         msg = """@badge-info=;badges=moderator/1;color=;\
@@ -37,10 +37,11 @@ class TestIRCMethods(unittest.TestCase):
         self.assertEqual(len(self._chatObj.current_channels()), 0)
 
     def test_part_channels(self):
+        self._chatObj.join_channel('xinthral')
         self._chatObj.join_channel('nerd_kommander')
         listSize = len(self._chatObj.current_channels())
-        self._chatObj.part_channels(['xinthral', 'nerd_kommander'])
         self.assertEqual(listSize, 2)
+        self._chatObj.part_channels(['xinthral', 'nerd_kommander'])
         self.assertEqual(len(self._chatObj.current_channels()), 0)
 
     def tearDown(self):

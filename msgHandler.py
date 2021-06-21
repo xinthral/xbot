@@ -3,58 +3,79 @@ import sys
 from cmdHandler import Command
 
 class Message:
-    _tmi_regex = re.compile(r":\w+!\w+@\w+.tmi.twitch.tv")
-    _cmd_regex = re.compile(r"!(\w+( \w+){0,3})")
-    _usr_regex = re.compile(r"#(\w+)")
-    _categories = ['PRIVMSG']
-
-    def hasCommand(text):
-        return(Message._cmd_regex.search(text) != None)
-
-    def hasMeta(headers):
-        # print(f"Headers: {headers}")
-        return(len(headers.split(';')) > 0)
+    _cmd_regex = re.compile(r"!(\w+)( \w+){0,3}")
+    _mod_regex = re.compile(r":(\w+)\.tmi\.twitch\.tv \d+ \w+ = #(\w+) :(.*)")
+    _msg_regex = re.compile(r":(\w+)\!.*@.*\.tmi\.twitch\.tv PRIVMSG #(.*) :(.*)")
+    _tmi_regex = re.compile(r":(\w+)\!.*@.*\.tmi\.twitch\.tv ([A-Z]+) #(\w+)")
+    # _events = ['PRIVMSG', 'USERSTATE', 'ROOMSTATE', 'JOIN', 'PART', 'PING', 'CAP * ACK', 'HOSTTARGET', 'HOST']
 
     def parse_message(message):
-        msgObj = dict()
-        try:
-            headers, text = Message._tmi_regex.split(message)
-            msgObj.update(Message.parse_channel(text))
-            if Message.hasMeta(headers):
-                msgObj.update(Message.parse_meta(headers))
-            if Message.hasCommand(text):
-                msgObj.update(Message.parse_command(text))
-                msgObj.update(Message.command_director(msgObj))
-        except ValueError as e:
-            # Some messages don't have headers
-            # print(f"Warn: Message.{'(parse_message)'}: {sys.exc_info()[1]}")
+        """ Parse all incoming messages """
+        response_obj = dict()
+        if message.startswith(':'):
+            response_obj.update(Message._parse_notification(message))
+        elif message.startswith('@'):
+            response_obj.update(Message._parse_privmsg(message))
+        elif message.startswith('PING'):
+            response_obj.update(Message._ping_response())
+        else:
             pass
-        except Exception as e:
-            print(f"Error: Message.{'(parse_message)'}: {sys.exc_info()}")
-            # sys.exc_info().print_exc()
-            # print(f"{errno}\n{strerror}")
-        finally:
-            return(msgObj)
+        # elif message.startswith('.'):
+        # elif message.startswith('='):
+        return(response_obj)
 
-    def parse_channel(text):
-        return({'channel': Message._usr_regex.search(text).group()[1:]})
+    def _parse_headers(message):
+        """ Parse Meta Data """
+        meta = message.split(' :')
+        response_obj = dict([ele.split('=') for ele in meta[0].split(';')])
+        return(response_obj)
 
-    def parse_command(text):
-        delim = '!'
-        # commands[0] would have been ' PRIVMSG #xinthral :'
-        return({'commands': [cmd.rstrip() for cmd in text.split(delim)[1:]]})
+    def _parse_notification(message):
+        """ Parse incoming notification messages """
+        response_obj = dict()
 
-    def parse_meta(message):
-        msg_dict = dict()
-        try:
-            for k,v in [record.split('=') for record in message.split(';')]:
-                msg_dict[k] = v
-        except Exception as e:
-            print(f"Error: Message.{'(parse_meta)'}: {sys.exc_info()[1]}")
-        finally:
-            # print(f'Mdict: {msg_dict}')
-            return(msg_dict)
+        # Handles Join/Part Events
+        if Message._tmi_regex.search(message) != None:
+            response_obj['username'], response_obj['category'], response_obj['channel'] = Message._tmi_regex.search(message).groups()
 
-    def command_director(message_object):
+        # Handles Modlist Response
+        elif Message._mod_regex.search(message) != None:
+            response_obj['username'], response_obj['channel'], mods = Message._mod_regex.search(message).groups()
+            response_obj['mods'] = mods.split(' ')
+
+        # else:
+            # Message: _':tmi.twitch.tv HOSTTARGET #xinthral :arcangl -'_
+            # Message: _':tmi.twitch.tv CAP * ACK :twitch.tv/membership'_
+            # Message: _':tmi.twitch.tv CAP * ACK :twitch.tv/tags'_
+            # Message: _':tmi.twitch.tv CAP * ACK :twitch.tv/commands'_
+            # Message: _':nerd_kommander.tmi.twitch.tv 366 nerd_kommander #nerd_kommander :End of /NAMES list'_
+
+        return(response_obj)
+
+    def _parse_privmsg(message):
+        """ Serialize raw message into object """
+        response_obj = dict({'response': []})
+        response_obj.update(Message._parse_headers(message))
+
+        # Handles PRIVMSG Events
+        if Message._msg_regex.search(message) != None:
+            response_obj['username'], response_obj['channel'], response_obj['text'] = Message._msg_regex.search(message).groups()
+            """
+
+            PUT SOME SHIT HERE TO DO THINGS
+
+            """
+            # print(f"Text: {response_obj['text']}")
+            # response_obj['response'].append(f"{len(response_obj['text'])}")
+        # else:
+            # Message: _'@msg-id=host_on :tmi.twitch.tv NOTICE #xinthral :Now hosting ArcAngL.'_
+
+        return(response_obj)
+
+    def _ping_response():
+        return({'response': 'PONG'})
+
+    def command_director(command):
         """ Calls to the Command class """
-        return(Command(message_object).parse())
+        pass
+        # return(Command(command).parse())

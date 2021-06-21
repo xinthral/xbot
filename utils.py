@@ -1,7 +1,20 @@
-def cnf(section, setting):
-    import os
-    from configparser import ConfigParser
+import datetime
+import logging
+import os
+import wrapt
 
+from configparser import ConfigParser
+from random import choice, seed
+from time import perf_counter
+
+logging.basicConfig(
+    filename = 'logs/master.log',
+    level = logging.INFO,
+    format = '%(asctime)s %(message)s',
+    datefmt = '[%B %d, %Y] %H:%M:%S'
+)
+
+def cnf(section, setting):
     ConfigFile = os.getcwd() + "/settings.config"
 
     config = ConfigParser()
@@ -14,38 +27,24 @@ def cnf(section, setting):
     else:
         return(value)
 
-def Logr(orig_func, logFile = 'master.log'):
+@wrapt.decorator
+def LogParam(orig_func, instance, *args):
     """
     Logger Function: boilerplate wrapper to log function
-     - only works on main function
+     - Instance method for variable argument functions
      - logs into loggrs directory as {functionName}.log
     """
-    import datetime
-    import logging, os
-    try:
-        logging.basicConfig(
-            filename = 'loggrs/master.log',
-            level = logging.INFO,
-            format = '%(asctime)s %(message)s',
-            datefmt = '[%B %d, %Y] %H:%M:%S'
-        )
-    except FileNotFoundError:
-        newPath = os.getcwd() + "/logr/"
-        if not os.path.exists(newPath):
-            print("{} Creating missing directory: {}".format(timeStamp(), newPath))
-            os.makedirs(newPath)
-        if not os.path.exists("{}{}".format(newPath, logFile)):
-            print("Creating missing file: 'logr/{}'".format(logFile))
-            open(os.path.join(newPath, logFile), 'w').close()
-    finally:
-        def wrapper(*args, **kwargs):
-            logging.info(
-                ':: {} ran with args: {}, and kwargs: {}'.format(
-                    orig_func.__name__, args, kwargs
-                )
-            )
-            return(orig_func(*args, **kwargs))
-        return(wrapper)
+    logging.info(f":: {orig_func.__name__} ran with args: {args}")
+    return(orig_func(*args[1:]))
+
+# @wrapt.decorator
+# def ExceptIt(orig_func, instance, *args, **kwargs):
+#     """
+#     Logger Function: boilerplate wrapper to log function
+#     """
+#     typ, err, errno = sys.exc_info()
+#     logging.warning(f":: {orig_func.__name__} experienced an {typ} exception: {err}.")
+#     return(orig_func(*args, *kwargs))
 
 def timeStamp():
     """
@@ -59,7 +58,6 @@ def timer(dtime):
     """
     Timer Function: Returns time elapsed as datetime.deltatime object
     """
-    from datetime import datetime
     now = datetime.now()
     response = now - dtime
     return(response)
@@ -68,7 +66,6 @@ def timeDelta(dtime):
     """
     TimeDelta Function: Returns time elapsed as formatted string
     """
-    from datetime import datetime
     now = datetime.now()
     changeTime = now - dtime
     minutes = changeTime.total_seconds() / 60
@@ -79,7 +76,29 @@ def randomRoll(inputList):
     """
     Returns a random element from the given list
     """
-    from time import perf_counter
-    from random import choice, seed
     seed(perf_counter())
     return(choice(inputList))
+
+""" Deprecated """
+
+# def setupLogging(fileName):
+#     logDir = '\\log\\'
+#     # logFile = f"{orig_func.__name__}.log"
+#     logFile = fileName
+#     # print(f"Checking Log {logFile}...")
+#     try:
+#         logging.basicConfig(
+#         filename = logFile,
+#         level = logging.INFO,
+#         format = '%(asctime)s %(message)s',
+#         datefmt = '[%B %d, %Y] %H:%M:%S'
+#         )
+#     except FileNotFoundError:
+#         newPath = os.path.abspath(os.getcwd() + logDir)
+#         print(f"New Path: {newPath}")
+#         if not os.path.exists(newPath):
+#             print(f"{timeStamp()} Creating missing directory: {newPath}")
+#             os.makedirs(newPath)
+#         if not os.path.exists(f"{newPath}{logFile}"):
+#             print(f"Creating missing file: '{logFile}'")
+#             open(os.path.join(newPath, logFile), 'w').close()

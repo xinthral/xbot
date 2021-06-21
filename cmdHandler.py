@@ -1,5 +1,5 @@
 from db.xsql import Database
-from commands.features import jokes, quotes
+from commands.features import Skits
 from utils import cnf
 
 class Command:
@@ -10,6 +10,7 @@ class Command:
 
     def __init__(self, message_object):
         self.obj = message_object
+        self.skit = Skits()
 
     def parse(self):
         resp = list()
@@ -23,31 +24,22 @@ class Command:
         cmdline = commandline.split()
         cmd = cmdline[0].lower()
         if cmd not in Command._authorized_commands:
-            response = ['Invalid Command']
+            # response = ['Invalid Command']
+            pass
         else:
-            if cmd == 'joke':
-                response = self.joke_parse(cmdline).split(Command._delim)
+            if cmd in Database._tables:
+                # response = self.joke_parse(cmdline).split(Command._delim)
+                response = self.skit.get_response(cmd)
             elif cmd == 'quote' or cmd == 'phrase':
                 # response = ['this is a temp quote', 'cause temp quote are needed', 'for testing']
-                response = self.phrase_parse(cmdline).split(Command._delim)
+                # response = self.phrase_parse(cmdline).split(Command._delim)
+                pass
+            elif cmd == 'fact':
+                # response = (facts(),)
+                pass
+            elif cmd == 'rather':
+                # response = (' ',)
+                pass
             else:
                 response = ['Command: WUT']
         return(response)
-
-    def joke_parse(self, commandline):
-        response = tuple()
-        if len(commandline) > 1:
-            response = jokes(commandline[1])
-        else:
-            response = jokes('dad')
-        # print(f'Joke Parse Resp: {response}')
-        return(response[1])
-
-    def phrase_parse(self, commandline):
-        response = tuple()
-        if len(commandline) > 1:
-            response = quotes(commandline[1])
-        else:
-            response = quotes('positivity')
-        # print(f'Quote Parse Resp: {response}')
-        return(response[1])

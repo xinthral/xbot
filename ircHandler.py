@@ -2,12 +2,16 @@ import socket
 import ssl
 import sys
 import threading
+import traceback
+
 from msgHandler import Message
 from time import sleep
-from utils import cnf
+from utils import cnf, LogParam
 
 class IRC(threading.Thread):
     __delim = cnf('ADMIN', 'DELIM')
+    __debug = cnf('DEV', 'DEBUG')
+
     def __init__(self, channels=list()):
         super().__init__()
         # self.__bot_id = cnf('AUTH', 'BOT_ID')
@@ -38,29 +42,35 @@ class IRC(threading.Thread):
         self.irc.connect((server, port))
 
     def __loop(self, cycle=True):
+        """ Main Event loop """
         idleTimeout = 0
         while (cycle and idleTimeout < 60):
             try:
                 received_msgs = self.irc.recv(1024).decode('utf-8')
                 for received_msg in received_msgs.split("\r\n"):
                     if len(received_msg) > 1:
+                        if IRC.__debug:
+                            print(f"> {received_msg}")
                         self.parse_message(received_msg)
                         idleTimeout = 0
-                    # else:
-                    #     sleep(3)
+                    else:
+                        sleep(1)
             except socket.timeout:
                 # FIXME: replace with logging
                 idleTimeout += 1
             except socket.gaierror:
                 print(f"IRC Socket Error: {socket.gaierror}")
                 cycle = False
-            except Exception as e:
-                print(f"IRC Exception Error: {sys.exc_info()[1]}")
-                # cycle = False
             except KeyboardInterrupt:
+                cycle = False
+            except Exception as e:
+                etype, etext, etrace = sys.exc_info()
+                traceback.print_exception(*sys.exc_info())
+                # print(f"IRC Exception Error: T: {etype}, X: {etext}, N: {etrace}")
                 cycle = False
 
     def join_channel(self, channel):
+        """ Join bot to listen in channel """
         if channel in self.__channels:
             return
         self.__channels.add(channel)
@@ -72,22 +82,24 @@ class IRC(threading.Thread):
         print(f"Joined {channel}!")
 
     def join_channels(self, channels=[]):
+        """ Join multiple channels """
         for channel in channels:
             self.join_channel(channel)
             # self.send_private(channel, 'Salue senior')
 
-    def parse_message(self, message=None):
+    @LogParam
+    def parse_message(self, message):
         """ Parse incoming messages into data object """
-        # from pprint import pprint as pp
-        if message != None:
-            print(f"> {message}")
+        if len(message) > 0:
             obj = Message.parse_message(message)
-            if len(obj.keys()) > 0 and 'response' in obj.keys():
-                # pp(obj)
-                for row in obj['response']:
-                    for resp in row:
-                        self.send_private(obj['channel'], resp)
-                        sleep(2)
+            # if obj.keys() >= {'response', 'channel'}:
+            #     for row in obj['response']:
+            #         if len(row.split(' ')) > 1:
+            #             for resp in row:
+            #                 self.send_private(obj['channel'], resp)
+            #                 sleep(2)
+            #         else:
+            #             self.send_private(obj['channel'], row)
 
     def part_channel(self, channel):
         """ Remove channel from listening events """
@@ -141,4 +153,3 @@ class IRC(threading.Thread):
         """ Initiate Teardown Sequence """
         print("Shutting Down...")
         self.irc.close()
-        # exit()
